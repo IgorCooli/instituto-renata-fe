@@ -4,6 +4,7 @@ Frontend do sistema de gestão de consultório (escopo genérico, multiárea).
 
 ## Documentação
 
+- [Guia de continuidade](docs/PROMPT.md) — contexto, estado do projeto e próximo passo (útil em sessões novas).
 - [Especificação do produto](docs/SPEC.md) — visão, módulos e requisitos transversais.
 - [Plano de implementação](docs/PLAN.md) — fases por feature e ordem sugerida.
 - [Changelog](CHANGELOG.md) — histórico de mudanças por versão.
