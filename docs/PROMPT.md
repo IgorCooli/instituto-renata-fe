@@ -4,12 +4,25 @@ Este ficheiro existe para **sessões novas** (outro chat, outro dia, outro dev):
 
 ### Manutenção obrigatória
 
-**Toda entrega ou ajuste relevante** (nova fase, feature, refactor que mude o rumo, integração com o backend, etc.) deve **atualizar este `docs/PROMPT.md`** na mesma alteração (ou no mesmo PR), para refletir:
+**Toda alteração** que mude o estado do desenvolvimento (código, rotas, contratos com o backend, conclusão de fase, nova prioridade, etc.) deve vir acompanhada de **atualização deste `docs/PROMPT.md` na mesma alteração** (ou no mesmo PR), para refletir:
 
-- **O que já foi feito** — secção *O que já foi feito (resumo)* e, se preciso, tabela ou bullets.
+- **O que já foi feito** — secção *O que já foi feito (resumo)* (tabela ou bullets).
 - **Os próximos passos** — secção *Próximo passo sugerido*, alinhada ao `docs/PLAN.md` e ao estado real do código.
 
 O **`CHANGELOG.md`** continua a registar *o quê* mudou por versão; o **PROMPT** é o **estado atual em linguagem natural** para quem abre o projeto de novo. Se o `PLAN.md` ou o `SPEC.md` mudarem de forma material, o PROMPT deve acompanhar.
+
+**Regra explícita para assistentes de IA:** ao concluir **qualquer tarefa** que altere o repositório de forma a mudar “o que está feito” ou “o que falta a seguir”, **não encerrar** sem atualizar as secções acima neste ficheiro. Isto inclui novas features, refactors que mudem fluxos, integração com API, e correções que alterem comportamento visível ou contratos. **Única exceção:** mudanças puramente cosméticas sem impacto no produto (ex.: typo em texto que não reflita novo estado). Em caso de dúvida, **atualiza o PROMPT**.
+
+### Para assistentes (IA) e novas sessões — checklist mínima
+
+Antes de editar código, confirma:
+
+1. **Leste** este `docs/PROMPT.md` (estado + próximo passo) e a secção relevante do **`docs/PLAN.md`**.
+2. Sabes onde está o **registo de rotas e features:** `src/app/routeMeta.ts` (`APP_CHILD_ROUTES`) e `src/app/AppRoutes.tsx`.
+3. Sabes que **sessão mock** usa `sessionStorage` chave **`ir_auth_session`** e tipos em `src/app/auth/types.ts` (`AuthSession`: `email`, `role`, `enabledFeatures`).
+4. Sabes que **acesso por módulo** vem de `src/app/access/` (`useAccess`, `hasFeature`) e features em `src/app/access/types.ts` (`FeatureId`).
+5. **Tema** é só cliente: `localStorage` **`ir_theme`**, `ThemeProvider`, `index.html` script anti-FOUC — não depende do backend.
+6. **Antes de concluir a tarefa:** atualizar **`docs/PROMPT.md`** conforme a regra de manutenção (obrigatório para alterações que mudem estado ou próximos passos), **`CHANGELOG.md`** quando for o caso, e correr **`npm run lint`** / **`npm run build`**.
 
 ---
 
@@ -48,6 +61,10 @@ O **`CHANGELOG.md`** continua a registar *o quê* mudou por versão; o **PROMPT*
 
 **Ficheiros-chave:** `src/app/AppRoutes.tsx`, `src/app/routeMeta.ts`, `src/app/auth/`, `src/app/access/`, `src/app/theme/`, `src/components/layout/AppShell.tsx`, `src/pages/app/AppDashboardPage.tsx`.
 
+**Contrato alinhado ao backend (quando integrar):** o FE deve continuar a poder representar `AuthSession` como hoje; detalhes em **`instituto-renata-be/docs/SPEC.md`** §6. Até lá, **`src/app/auth/mockLogin.ts`** simula login.
+
+**Armadilhas comuns:** não duplicar regras de feature fora de `routeMeta` + guardas; não quebrar **mobile** (`docs/SPEC.md` §6); não listar no `README` “produção” o que ainda não foi deployado para o cliente.
+
 ---
 
 ## Próximo passo sugerido
@@ -85,7 +102,8 @@ npm run lint
 
 ## Ligação ao backend
 
-- Contrato de sessão alvo: `email`, `role`, `enabledFeatures` (ver SPEC do `be`).
+- Repositório irmão: clonar **`instituto-renata-be`** ao lado deste projeto (mesmo diretório pai) para trabalhar contratos; spec da API: `instituto-renata-be/docs/SPEC.md`.
+- Contrato de sessão alvo: `email`, `role`, `enabledFeatures` (ver §6 do SPEC do `be`).
 - O frontend já persiste sessão mock em `sessionStorage` (`ir_auth_session`).
 
 ---
