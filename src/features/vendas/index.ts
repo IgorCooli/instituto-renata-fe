@@ -1,0 +1,2 @@
+/** Vendas — a implementar. */
+export {}

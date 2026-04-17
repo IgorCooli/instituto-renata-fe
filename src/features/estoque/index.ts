@@ -1,0 +1,2 @@
+/** Estoque — a implementar. */
+export {}

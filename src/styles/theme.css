@@ -1,0 +1,36 @@
+/**
+ * Tokens de tema — altere aqui para white-label / outro cliente.
+ * Carregado depois do Bootstrap para sobrescrever variáveis CSS.
+ */
+:root {
+  /* Marca (marsala) */
+  --ir-color-marsala: #722f37;
+  --ir-color-marsala-hover: #5a252c;
+  --ir-color-marsala-rgb: 114, 47, 55;
+
+  /* Neutros */
+  --ir-gray-50: #fafafa;
+  --ir-gray-100: #f0f0f0;
+  --ir-gray-700: #495057;
+  --ir-gray-900: #212529;
+
+  /* Bootstrap: primário = marsala */
+  --bs-primary: var(--ir-color-marsala);
+  --bs-primary-rgb: var(--ir-color-marsala-rgb);
+  --bs-link-color: var(--ir-color-marsala);
+  --bs-link-hover-color: var(--ir-color-marsala-hover);
+
+  /* Superfície */
+  --bs-body-bg: var(--ir-gray-50);
+  --bs-body-color: var(--ir-gray-900);
+  --bs-secondary-color: var(--ir-gray-700);
+}
+
+.btn-primary {
+  --bs-btn-bg: var(--ir-color-marsala);
+  --bs-btn-border-color: var(--ir-color-marsala);
+  --bs-btn-hover-bg: var(--ir-color-marsala-hover);
+  --bs-btn-hover-border-color: var(--ir-color-marsala-hover);
+  --bs-btn-active-bg: var(--ir-color-marsala-hover);
+  --bs-btn-active-border-color: var(--ir-color-marsala-hover);
+}
