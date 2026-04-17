@@ -225,15 +225,15 @@ export function AppDashboardPage() {
           <Col xs={12} lg={8}>
             <Card className="border h-100 shadow-sm">
               <Card.Body className="p-4">
-                <div className="d-flex align-items-start gap-3 mb-3">
-                  <Badge bg="success" className="align-self-start">
-                    Ativo
+                <div className="d-flex align-items-start gap-3">
+                  <Badge bg="secondary" className="align-self-start">
+                    Em breve
                   </Badge>
                   <div>
-                    <h3 className="h5 mb-2">iAnjo</h3>
+                    <h3 className="h5 mb-2">Integrações e complementos</h3>
                     <p className="text-secondary small mb-0">
-                      Assistente e insights para sua equipe — integração em
-                      desenvolvimento (dados mock).
+                      Espaço reservado para serviços adicionais do pacote (quando
+                      definidos). Por ora apenas dados mock.
                     </p>
                   </div>
                 </div>

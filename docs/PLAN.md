@@ -20,6 +20,7 @@ flowchart LR
     T[Claro / escuro]
   end
   subgraph features [Features]
+    H[Início /app]
     M[Marketing]
     C[CRM]
     V[Vendas]
@@ -28,10 +29,11 @@ flowchart LR
   foundation --> shell
   shell --> A
   A --> T
-  T --> M
-  T --> C
-  T --> V
-  T --> E
+  T --> H
+  H --> M
+  H --> C
+  H --> V
+  H --> E
 ```
 
 *(Mermaid é opcional no visualizador; o texto abaixo é a fonte de verdade.)*
@@ -133,7 +135,24 @@ flowchart LR
 
 ---
 
-## Fase 6 — Feature: Marketing
+## Fase 6 — Tela de início (dashboard em `/app`)
+
+**Objetivo:** após o login, o utilizador ver um **painel de início** coerente com a marca (saudação, acesso rápido aos módulos do pacote, elementos opcionais como onboarding e complementos), em **mobile e desktop**, antes de investir nas telas profundas de cada módulo.
+
+**Contexto:** a prioridade desta fase foi **adiantada** em relação ao plano original (em que “Marketing público” vinha primeiro). O **site marketing** passou para a **Fase 7**.
+
+**Passos:**
+
+1. Layout da rota **`/app`** (index): hero de boas-vindas, cópias configuráveis (ex.: `mocks`), grelha de cartões alinhada a **`APP_CHILD_ROUTES`** (Marketing, CRM, Vendas, Estoque) com ícones discretos e respeito a `hasFeature` / pacote mock.
+2. Blocos opcionais: onboarding (progresso, dispensável), secção “Complementos”, FAB ou atalho de suporte (podem ficar placeholder até integração).
+3. Estilos dedicados (ex.: `app-dashboard.css`) usando tokens de **`theme.css`** — sem cores fixas que quebrem no modo escuro.
+4. Responsividade: cartões empilham em ecrã estreito; conteúdo acessível sem scroll horizontal desnecessário.
+
+**Saída:** utilizador autenticado reconhece o contexto da clínica e abre módulos permitidos a partir do início; base visual alinhada à referência de produto (ex.: dashboard tipo “Ryka”).
+
+---
+
+## Fase 7 — Feature: Marketing (público)
 
 **Objetivo:** páginas públicas conforme spec §4.2.
 
@@ -141,13 +160,13 @@ flowchart LR
 
 1. Layout marketing (sem menu administrativo ou com header simplificado).
 2. Landing com seções genéricas (serviços, contato); dados estáticos ou JSON local.
-3. Rota pública clara (ex.: `/` ou `/site`).
+3. Rota pública clara (ex.: `/` dedicado ao site, ou `/site`, conforme decisão — hoje `/` pode ser home técnica; alinhar com o spec).
 
 **Saída:** visitante vê marketing sem autenticação.
 
 ---
 
-## Fase 7 — Feature: CRM
+## Fase 8 — Feature: CRM
 
 **Objetivo:** primeiro módulo de dados “ricos” conforme spec §4.3.
 
@@ -161,7 +180,7 @@ flowchart LR
 
 ---
 
-## Fase 8 — Feature: Vendas
+## Fase 9 — Feature: Vendas
 
 **Objetivo:** orçamentos/oportunidades conforme spec §4.4.
 
@@ -175,7 +194,7 @@ flowchart LR
 
 ---
 
-## Fase 9 — Feature: Estoque
+## Fase 10 — Feature: Estoque
 
 **Objetivo:** itens e movimentações conforme spec §4.5.
 
@@ -189,7 +208,7 @@ flowchart LR
 
 ---
 
-## Fase 10 — Qualidade e preparação para API
+## Fase 11 — Qualidade e preparação para API
 
 **Objetivo:** endurecer antes de integrar o repositório **backend** (quando existir); até lá o app permanece 100 % em mocks.
 
@@ -214,11 +233,12 @@ flowchart LR
 | 3 | Shell + rotas + guardas (features / roles) |
 | 4 | Login |
 | 5 | **Tema claro / escuro (toggle global + persistência)** |
-| 6 | Marketing |
-| 7 | CRM |
-| 8 | Vendas |
-| 9 | Estoque |
-| 10 | Qualidade + camada de API mock |
+| 6 | **Tela de início / dashboard (`/app`)** |
+| 7 | Marketing (público) |
+| 8 | CRM |
+| 9 | Vendas |
+| 10 | Estoque |
+| 11 | Qualidade + camada de API mock |
 
 ---
 
@@ -239,3 +259,4 @@ Ao receber novas informações de produto ou prioridade:
 | *(inicial)* | Plano por fases com módulos Login, Marketing, CRM, Vendas, Estoque. |
 | 2026-04-17 | Intro (responsivo); Fase 0/2/3/9 mobile; §2.1; Processo §7; README vs changelog. |
 | 2026-04-17 | Nova **Fase 5** tema claro/escuro; Marketing→6 … Estoque→9; Qualidade→10; mermaid atualizado. |
+| 2026-04-18 | **Fase 6** redefinida: **tela de início** (`/app`) com prioridade; **Marketing público**→**7**; CRM→**8**; Vendas→**9**; Estoque→**10**; Qualidade→**11**; diagrama e tabela atualizados. |
