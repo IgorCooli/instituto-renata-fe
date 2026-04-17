@@ -6,6 +6,10 @@ O formato segue a ideia de [Keep a Changelog](https://keepachangelog.com/pt-BR/1
 
 ## [Unreleased]
 
+### Added
+
+- **Tela de início** (`/app`): dashboard com perfil (iniciais, nome derivado do e-mail, papel), saudação com marca configurável em `mocks`, banner de onboarding (progresso e fechar), grelha de módulos **Marketing**, **CRM**, **Vendas**, **Estoque** com ícones em traço e respeito a `hasFeature`, secção **Complementos** (placeholder) e botão flutuante de suporte (desativado). Estilos em `src/styles/app-dashboard.css`.
+
 ## [0.5.0] — 2026-04-17
 
 ### Added

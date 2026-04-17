@@ -1,0 +1,37 @@
+/**
+ * Tela de início (/app) — cartões e hero alinhados ao tema claro/escuro.
+ */
+.ir-dashboard-hero-title {
+  letter-spacing: -0.02em;
+}
+
+.ir-dashboard-feature-card {
+  transition:
+    border-color 0.15s ease,
+    box-shadow 0.15s ease,
+    transform 0.15s ease;
+}
+
+.ir-dashboard-feature-card:not(.ir-dashboard-feature-card--disabled):hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0.5rem 1.25rem rgba(0, 0, 0, 0.08);
+}
+
+html[data-bs-theme='dark'] .ir-dashboard-feature-card:not(.ir-dashboard-feature-card--disabled):hover {
+  box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.35);
+}
+
+.ir-dashboard-feature-card--active {
+  border-color: var(--bs-primary) !important;
+}
+
+.ir-dashboard-fab {
+  width: 3.25rem;
+  height: 3.25rem;
+  border-radius: 50%;
+  box-shadow: 0 0.35rem 1rem rgba(0, 0, 0, 0.15);
+}
+
+html[data-bs-theme='dark'] .ir-dashboard-fab {
+  box-shadow: 0 0.35rem 1.25rem rgba(0, 0, 0, 0.45);
+}
