@@ -18,6 +18,7 @@ Sistema web para **gestão de consultório** (primeiro uso: contexto odontológi
 |----------|-----------|
 | Usuários | Equipe do consultório (recepção, clínico, administrativo); **papéis iniciais** `admin` e `comum` (ver §5). |
 | Acesso | Aplicação web; autenticação obrigatória para área operacional; marketing pode ser público. |
+| Dispositivos | Clientes e equipe acessam **também por smartphone**; a UI deve ser **responsiva** e utilizável em telas pequenas (ver §6). |
 | Backend | **Não integrar neste primeiro momento.** O API real ficará em repositório separado (mesmo nome do projeto, sufixo `be` em vez de `fe`, no mesmo diretório pai). Até lá, ver §2.1. |
 
 ### 2.1 Ordem de trabalho: telas primeiro, dados mockados
@@ -34,6 +35,7 @@ Sistema web para **gestão de consultório** (primeiro uso: contexto odontológi
 - **React Router** para rotas.
 - **Tema:** variáveis CSS (ou camada SCSS) centralizadas para cores e tokens; sem cores hardcoded em componentes de negócio.
 - **Dados (fase atual):** mocks centralizados por domínio (ex.: `src/mocks/` ou `src/services/mock/`) e tipos TypeScript compartilhados, para troca futura por `fetch`/client HTTP.
+- **Layout responsivo:** grid e utilitários do **Bootstrap** (breakpoints, `Container` fluid, navbar colapsável, etc.) para **mobile-first** onde fizer sentido; nenhuma tela crítica pode depender só de viewport largo.
 
 *(Ajustes finos de biblioteca podem ser registrados no repositório à medida que o projeto for criado.)*
 
@@ -155,7 +157,8 @@ O sistema será vendido **por pacotes**: cada cliente habilita apenas os **módu
 
 | Área | Requisito |
 |------|-----------|
-| Layout | Área logada com shell comum (navegação lateral ou superior); marketing pode usar layout próprio sem sidebar administrativa. |
+| Layout | Área logada com shell comum (navegação lateral ou superior); marketing pode usar layout próprio sem sidebar administrativa. **Em todos os fluxos:** navegação e conteúdo utilizáveis em **largura estreita** (celular). |
+| Responsivo | **Obrigatório:** interfaces usáveis em **smartphone** (toque, leitura, formulários, tabelas com rolagem ou padrão adaptado). Validar em viewports típicas (ex. ~360px de largura) ao entregar telas. |
 | Componentes | Botões, barras de navegação, modais, formulários vêm de `components/` (wrappers sobre Bootstrap quando fizer sentido). |
 | Tema | Cores e tokens definidos em um único lugar; troca de paleta para outro cliente sem varrer telas. |
 | Acessibilidade | Meta: contraste e foco utilizáveis; detalhar checklist depois. |
@@ -193,4 +196,4 @@ Itens para incrementar o spec depois: **matriz fina de permissões** além de ad
 | Data | Alteração |
 |------|-----------|
 | *(inicial)* | Versão base com módulos Login, Marketing, CRM, Vendas, Estoque. |
-| 2026-04-17 | §2.1 mocks/`be`; §5 RBAC; §6/§7.1 (changelog técnico; README = só produção cliente); §7. |
+| 2026-04-17 | §2 dispositivos/mobile; §3 layout responsivo; §5 RBAC; §6/§7.1; §7. |

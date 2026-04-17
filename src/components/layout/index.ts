@@ -1,3 +1,4 @@
+export { AppShell } from './AppShell'
 export { EmptyState } from './EmptyState'
 export type { EmptyStateProps } from './EmptyState'
 export { PageContainer } from './PageContainer'

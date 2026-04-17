@@ -6,9 +6,26 @@ O formato segue a ideia de [Keep a Changelog](https://keepachangelog.com/pt-BR/1
 
 ## [Unreleased]
 
+### Added
+
+- Tela placeholder **Marketing** (`/app/marketing`), feature `marketing` no mock de pacote.
+
 ### Changed
 
-- **Documentação:** `README.md` — secção de funcionalidades apenas para o que estiver **em produção** para o cliente; `CHANGELOG.md` segue como histórico técnico do repositório (`docs/SPEC.md` §7.1).
+- **Documentação:** `docs/SPEC.md` e `docs/PLAN.md` — obrigatoriedade de UI **responsiva** (acesso por smartphone); `README` com referência.
+
+## [0.3.0] — 2026-04-17
+
+### Added
+
+- **Fase 3 — Shell e acesso (mock):** `AccessProvider`, `useAccess`, `mockSession` (`src/app/access/`); rotas `/app` e filhas por módulo; `AppShell` com menu filtrado por features; `RequireAccess` e `ModuleBlockedPage` quando módulo não está no pacote ou papel insuficiente.
+- `**routeMeta.ts`:** lista única de rotas filhas de `/app` para menu e paths.
+- Páginas placeholder: `AppDashboardPage`, `CrmPage`, `VendasPage`, `EstoquePage` (`src/pages/app/`).
+- Link na home pública para `/app`.
+
+### Changed
+
+- **Documentação:** `README.md` — secção de funcionalidades apenas para o que estiver **em produção** para o cliente; `CHANGELOG.md` como histórico técnico (`docs/SPEC.md` §7.1).
 
 ## [0.2.0] — 2026-04-17
 
@@ -24,7 +41,8 @@ O formato segue a ideia de [Keep a Changelog](https://keepachangelog.com/pt-BR/1
 
 - Fundação do frontend: **Vite 8**, **React 19**, **TypeScript**, ESLint.
 - **Bootstrap 5**, **react-bootstrap** e **react-router-dom**.
-- Tema global **marsala + cinza** em `src/styles/theme.css` (tokens `--ir-*` e `--bs-primary`).
+- Tema global **marsala + cinza** em `src/styles/theme.css` (tokens `--ir-`* e `--bs-primary`).
 - Pastas: `src/app/`, `src/components/ui`, `src/components/layout`, `src/features/` (auth, marketing, crm, vendas, estoque), `src/mocks/`, `src/pages/`, `src/styles/`.
 - Página inicial placeholder (`/`) usando componentes Bootstrap e textos mockados em `src/mocks/index.ts`.
 - Processo de documentação descrito em `docs/SPEC.md` §7 (evoluído depois: README voltado à produção para o cliente).
+

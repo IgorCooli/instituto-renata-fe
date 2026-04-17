@@ -12,6 +12,8 @@ Gerenciador de pacotes: **npm**.
 
 **Dados:** nesta fase o frontend usa **mocks** (dados falsos) para visualizar telas; integração com o API em repositório `…-be` será depois (ver `docs/SPEC.md` §2.1).
 
+**Responsivo:** o produto deve ser utilizável em **celular**; requisitos em `docs/SPEC.md` §6 e no `docs/PLAN.md`.
+
 ## Desenvolvimento
 
 ```bash

@@ -1,6 +1,6 @@
 # Plano de implementação (frontend)
 
-Plano **incremental**: cada fase entrega valor testável. **Nesta etapa do projeto, toda tela usa dados mockados** (ver `SPEC.md` §2.1); integração com o backend (`be`, repositório irmão) virá depois. Ordem sugerida considera dependências (tema e shell antes das features) e uso de **npm** como gerenciador de pacotes.
+Plano **incremental**: cada fase entrega valor testável. **Nesta etapa do projeto, toda tela usa dados mockados** (ver `SPEC.md` §2.1); integração com o backend (`be`, repositório irmão) virá depois. **Todas as telas devem ser responsivas** — clientes acessam pelo celular (`SPEC.md` §6). Ordem sugerida considera dependências (tema e shell antes das features) e uso de **npm** como gerenciador de pacotes.
 
 ## Visão das fases por parte do projeto
 
@@ -40,6 +40,7 @@ flowchart LR
 - [ ] Novas telas: dados via **mock** na camada de serviço/hook, nunca dependência direta ao `be` até a fase de integração.
 - [ ] Mudanças notáveis: atualizar **`CHANGELOG.md`** conforme **§7.1** do spec.
 - [ ] **`README.md`:** atualizar a lista de **funcionalidades em produção para o cliente** apenas quando algo for **implantado em produção** — não usar essa lista para trabalho em desenvolvimento (§7.1).
+- [ ] Novas telas e layouts: verificar **uso em mobile** (largura estreita, toque), conforme **§6** do spec.
 
 **Saída:** spec e plan alinhados com o time.
 
@@ -71,8 +72,9 @@ flowchart LR
 1. Wrappers: botão, input, card, modal, alert/toast (o que for necessário para as próximas fases).
 2. Componentes de layout: `PageHeader`, `EmptyState`, container de página.
 3. Padronizar importações e variantes (ex.: `variant` mapeada para tokens).
+4. Garantir que primitivos e containers funcionem bem em **viewport estreita** (empilhamento, largura total, sem overflow horizontal desnecessário).
 
-**Saída:** telas futuras só compõem estes componentes.
+**Saída:** telas futuras só compõem estes componentes; base pronta para mobile.
 
 ---
 
@@ -85,10 +87,11 @@ flowchart LR
 1. Definir rotas: `/login`, `/` (marketing ou redirect), `/app/...` para módulos internos; cada rota declarada com **feature** e **roles** exigidos (ver chaves `crm`, `vendas`, `estoque`, etc.).
 2. **Mocks** até existir API: `enabledFeatures` (tenant) e `role` do usuário (`admin` | `common`); provider/hook (ex.: `useAccess()`).
 3. Componentes ou wrappers de rota: **bloqueio por URL** se feature desligada ou papel insuficiente (redirecionamento ou página 403 amigável — decidir padrão e documentar).
-4. **Menu** (sidebar/navbar) gerado a partir do mesmo registro de rotas ou mapa derivado — sem duplicar regras em vários arquivos.
+4. **Menu** (sidebar/navbar) gerado a partir do mesmo registro de rotas ou mapa derivado — sem duplicar regras em vários arquivos; **menu colapsável** em telas pequenas (padrão Bootstrap).
 5. Rotas protegidas: sessão mock de “usuário logado” até integração real.
+6. Revisar shell e páginas stub em **largura de celular** (~360px).
 
-**Saída:** navegação entre seções coerente com pacote simulado; deep link para módulo não contratado não expõe tela de módulo.
+**Saída:** navegação entre seções coerente com pacote simulado; deep link para módulo não contratado não expõe tela de módulo; uso aceitável em smartphone.
 
 ---
 
@@ -173,8 +176,9 @@ flowchart LR
 2. Extrair tipos TypeScript compartilhados (`types/`) para entidades usadas em CRM/Vendas/Estoque, **papéis** e **features** habilitadas (contrato com backend).
 3. Camada `api/` ou `services/` com funções que hoje retornam mocks; trocar implementação depois.
 4. Testes (opcional): componentes críticos, hooks e **guardas de rota** (cenários feature off / role errado).
+5. Smoke manual ou checklist de **regressão visual** em mobile para fluxos principais.
 
-**Saída:** projeto pronto para substituir mocks por chamadas HTTP; **contrato de sessão** (features habilitadas + `role`) refletido em tipos e serviços.
+**Saída:** projeto pronto para substituir mocks por chamadas HTTP; **contrato de sessão** (features habilitadas + `role`) refletido em tipos e serviços; critérios de responsividade documentados no spec.
 
 ---
 
@@ -209,4 +213,4 @@ Ao receber novas informações de produto ou prioridade:
 | Data | Alteração |
 |------|-----------|
 | *(inicial)* | Plano por fases com módulos Login, Marketing, CRM, Vendas, Estoque. |
-| 2026-04-17 | Intro, Fase 0/1, Fase 3–4/9, §2.1, Processo §7; README produção vs changelog técnico. |
+| 2026-04-17 | Intro (responsivo); Fase 0/2/3/9 mobile; §2.1; Processo §7; README vs changelog. |

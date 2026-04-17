@@ -1,4 +1,5 @@
 import Stack from 'react-bootstrap/Stack'
+import { Link } from 'react-router-dom'
 import {
   AppBadge,
   AppButton,
@@ -14,6 +15,20 @@ export function HomePage() {
       <PageHeader title={mockAppName} description={mockTagline} />
 
       <Stack gap={4}>
+        <AppCard
+          borderless
+          title="Área interna (sessão mock)"
+          subtitle="Fase 3 — shell, rotas e guardas por feature."
+        >
+          <p className="text-secondary small mb-3">
+            Marketing, CRM, Vendas e Estoque com telas placeholder; menu oculta módulos fora do pacote
+            simulado em <code>src/app/access/mockSession.ts</code>.
+          </p>
+          <Link to="/app" className="btn btn-primary">
+            Abrir /app
+          </Link>
+        </AppCard>
+
         <AppCard
           borderless
           title="Fase 1 — fundação"
