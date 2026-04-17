@@ -6,13 +6,23 @@ import { EstoquePage } from '../pages/app/EstoquePage'
 import { MarketingPage } from '../pages/app/MarketingPage'
 import { VendasPage } from '../pages/app/VendasPage'
 import { HomePage } from '../pages/HomePage'
+import { LoginPage } from '../pages/LoginPage'
 import { RequireAccess } from './RequireAccess'
+import { RequireAuth } from './RequireAuth'
 
 export function AppRoutes() {
   return (
     <Routes>
       <Route path="/" element={<HomePage />} />
-      <Route path="/app" element={<AppShell />}>
+      <Route path="/login" element={<LoginPage />} />
+      <Route
+        path="/app"
+        element={
+          <RequireAuth>
+            <AppShell />
+          </RequireAuth>
+        }
+      >
         <Route index element={<AppDashboardPage />} />
         <Route
           path="marketing"

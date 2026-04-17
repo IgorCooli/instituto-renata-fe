@@ -1,0 +1,121 @@
+/* Layout da página de login — cores via :root em theme.css */
+
+.login-page {
+  min-height: 100vh;
+  background: var(--login-page-bg);
+  color: var(--login-text);
+}
+
+.login-card {
+  width: 100%;
+  max-width: 56rem;
+  border-radius: var(--login-card-radius);
+  overflow: hidden;
+  box-shadow: 0 1.5rem 3rem rgba(0, 0, 0, 0.45);
+}
+
+.login-form-panel {
+  background: var(--login-form-bg);
+}
+
+.login-brand-panel {
+  background: var(--login-brand-gradient);
+  color: #fff;
+  min-height: 12rem;
+}
+
+@media (min-width: 992px) {
+  .login-brand-panel {
+    min-height: auto;
+  }
+}
+
+.login-title {
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.login-subtitle {
+  color: var(--login-text-muted);
+  font-size: 0.95rem;
+}
+
+.login-label {
+  color: var(--login-text-muted);
+  font-size: 0.8rem;
+  margin-bottom: 0.35rem;
+}
+
+.login-input.form-control {
+  background: var(--login-input-bg);
+  border: 1px solid var(--login-input-border);
+  color: var(--login-text);
+}
+
+.login-input.form-control::placeholder {
+  color: var(--login-input-placeholder);
+}
+
+.login-input.form-control:focus {
+  background: var(--login-input-bg);
+  border-color: var(--ir-color-marsala);
+  color: var(--login-text);
+  box-shadow: 0 0 0 0.2rem rgba(var(--ir-color-marsala-rgb), 0.25);
+}
+
+.login-link-muted {
+  color: var(--login-text-muted);
+  font-size: 0.85rem;
+  text-decoration: none;
+}
+
+.login-link-muted:hover {
+  color: var(--login-text);
+  text-decoration: underline;
+}
+
+.login-btn-primary {
+  background: var(--login-btn-primary-bg);
+  border: none;
+  color: var(--login-btn-primary-text);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  padding-top: 0.65rem;
+  padding-bottom: 0.65rem;
+}
+
+.login-btn-primary:hover,
+.login-btn-primary:focus {
+  background: var(--login-btn-primary-hover);
+  color: var(--login-btn-primary-text);
+}
+
+.login-btn-social {
+  background: var(--login-btn-social-bg);
+  border: 1px solid var(--login-input-border);
+  color: var(--login-text);
+  font-size: 0.9rem;
+}
+
+.login-btn-social:disabled {
+  opacity: 0.65;
+}
+
+.login-btn-outline {
+  background: transparent;
+  border: 1px solid var(--login-btn-outline-border);
+  color: var(--login-text-muted);
+}
+
+.login-sep {
+  color: var(--login-text-muted);
+  font-size: 0.8rem;
+}
+
+.login-sep::before,
+.login-sep::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--login-input-border);
+}

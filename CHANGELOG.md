@@ -6,20 +6,24 @@ O formato segue a ideia de [Keep a Changelog](https://keepachangelog.com/pt-BR/1
 
 ## [Unreleased]
 
+## [0.4.0] — 2026-04-17
+
 ### Added
 
-- Tela placeholder **Marketing** (`/app/marketing`), feature `marketing` no mock de pacote.
+- **Fase 4 — Login (mock):** rota `/login` com layout em duas colunas (formulário + painel de marca), estilos em `src/styles/login.css` e tokens `--login-*` em `theme.css` (fáceis de trocar por cliente).
+- **`AuthProvider`**, **`useAuth`**, **`mockLogin`**, persistência em `sessionStorage` (`ir_auth_session`); `AccessProvider` passa a usar `role` e `enabledFeatures` da sessão após login.
+- **`RequireAuth`** protege `/app`; botão **Sair** e e-mail no `AppShell`; home com **Entrar** ou **Ir para /app** conforme sessão.
 
 ### Changed
 
-- **Documentação:** `docs/SPEC.md` e `docs/PLAN.md` — obrigatoriedade de UI **responsiva** (acesso por smartphone); `README` com referência.
+- **Documentação:** `docs/SPEC.md` e `docs/PLAN.md` — obrigatoriedade de UI **responsiva**; `README` com referência.
 
 ## [0.3.0] — 2026-04-17
 
 ### Added
 
 - **Fase 3 — Shell e acesso (mock):** `AccessProvider`, `useAccess`, `mockSession` (`src/app/access/`); rotas `/app` e filhas por módulo; `AppShell` com menu filtrado por features; `RequireAccess` e `ModuleBlockedPage` quando módulo não está no pacote ou papel insuficiente.
-- `**routeMeta.ts`:** lista única de rotas filhas de `/app` para menu e paths.
+- **`routeMeta.ts`:** lista única de rotas filhas de `/app` para menu e paths.
 - Páginas placeholder: `AppDashboardPage`, `CrmPage`, `VendasPage`, `EstoquePage` (`src/pages/app/`).
 - Link na home pública para `/app`.
 

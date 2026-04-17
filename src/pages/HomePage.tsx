@@ -1,5 +1,6 @@
 import Stack from 'react-bootstrap/Stack'
 import { Link } from 'react-router-dom'
+import { useAuth } from '../app/auth/useAuth'
 import {
   AppBadge,
   AppButton,
@@ -10,6 +11,8 @@ import { EmptyState, PageContainer, PageHeader } from '../components/layout'
 import { mockAppName, mockTagline } from '../mocks'
 
 export function HomePage() {
+  const { isAuthenticated } = useAuth()
+
   return (
     <PageContainer>
       <PageHeader title={mockAppName} description={mockTagline} />
@@ -17,16 +20,22 @@ export function HomePage() {
       <Stack gap={4}>
         <AppCard
           borderless
-          title="Área interna (sessão mock)"
-          subtitle="Fase 3 — shell, rotas e guardas por feature."
+          title="Área interna"
+          subtitle="Login mock + shell, rotas e guardas por feature."
         >
           <p className="text-secondary small mb-3">
-            Marketing, CRM, Vendas e Estoque com telas placeholder; menu oculta módulos fora do pacote
-            simulado em <code>src/app/access/mockSession.ts</code>.
+            Após entrar, acesse Marketing, CRM, Vendas e Estoque (pacote simulado após login
+            em <code>mockLogin</code> / sessão).
           </p>
-          <Link to="/app" className="btn btn-primary">
-            Abrir /app
-          </Link>
+          {isAuthenticated ? (
+            <Link to="/app" className="btn btn-primary">
+              Ir para /app
+            </Link>
+          ) : (
+            <Link to="/login" className="btn btn-primary">
+              Entrar
+            </Link>
+          )}
         </AppCard>
 
         <AppCard

@@ -1,13 +1,21 @@
 import Container from 'react-bootstrap/Container'
 import Nav from 'react-bootstrap/Nav'
 import Navbar from 'react-bootstrap/Navbar'
-import { Link, NavLink, Outlet } from 'react-router-dom'
+import { Link, NavLink, Outlet, useNavigate } from 'react-router-dom'
 import { useAccess } from '../../app/access'
+import { useAuth } from '../../app/auth/useAuth'
 import { APP_CHILD_ROUTES } from '../../app/routeMeta'
 
 /** Layout da área logada: menu filtrado por features habilitadas (mock). */
 export function AppShell() {
   const { hasFeature } = useAccess()
+  const { session, logout } = useAuth()
+  const navigate = useNavigate()
+
+  function handleLogout() {
+    logout()
+    navigate('/login', { replace: true })
+  }
 
   return (
     <>
@@ -32,9 +40,22 @@ export function AppShell() {
                 </Nav.Link>
               ))}
             </Nav>
-            <Nav>
+            <Nav className="ms-lg-2 align-items-lg-center flex-column flex-lg-row gap-1 gap-lg-2">
+              {session?.email ? (
+                <Navbar.Text className="small text-secondary d-none d-md-inline py-1">
+                  {session.email}
+                </Navbar.Text>
+              ) : null}
               <Nav.Link as={Link} to="/">
                 Página inicial
+              </Nav.Link>
+              <Nav.Link
+                as="button"
+                type="button"
+                className="btn btn-link nav-link py-1 text-decoration-none"
+                onClick={handleLogout}
+              >
+                Sair
               </Nav.Link>
             </Nav>
           </Navbar.Collapse>
