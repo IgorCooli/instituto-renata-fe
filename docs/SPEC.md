@@ -162,23 +162,27 @@ O sistema será vendido **por pacotes**: cada cliente habilita apenas os **módu
 | Internacionalização | Desejável deixar textos preparados para tradução (decisão de lib em fase de setup). |
 | Features e roles | Conforme §5: menu, rotas e ações respeitam módulos contratados e papel do usuário. |
 | Dados e API | Conforme §2.1: **mocks até integração**; autenticação e listagens usam implementações falsas alinhadas aos tipos, para plugar o `be` depois. |
-| Changelog e README | A cada **feature** (ou entrega equivalente) entregue no código: atualizar **`CHANGELOG.md`** e o **`README.md`** com o que foi adicionado ou alterado (ver §7). |
+| Changelog e README | **`CHANGELOG.md`:** registrar mudanças notáveis por versão (desenvolvimento ou produção), conforme §7.1. **`README.md`:** a secção de **funcionalidades voltada ao cliente** só deve listar o que estiver **em produção** para o cliente; trabalho ainda em desenvolvimento **não** entra aí (ver §7.1). |
 
-## 7. Processo de atualização (spec, plan, código, changelog e README)
+## 7. Processo de atualização (spec, plan, código, changelog e README para produção)
 
 Quando novas informações forem incorporadas a este documento e ao `PLAN.md`:
 
 1. **Atualizar** `SPEC.md` e `PLAN.md` de forma consistente com as decisões acordadas.
 2. **Verificar o repositório:** se o trecho alterado no spec/plan **já estiver implementado** no código de outra forma, **registrar explicitamente** que é necessário **alinhar o código** ao novo documento (ou justificar exceção).
 
-### 7.1 Changelog e README por feature
+### 7.1 Changelog e README
 
-Sempre que uma **feature** for implementada ou concluída de forma significativa (nova tela, novo módulo, fluxo relevante):
+**`CHANGELOG.md`**
 
-1. **`CHANGELOG.md`** — registrar na seção apropriada (ex.: *Added*), com data ou referência de versão conforme o padrão adotado no arquivo; descrever de forma objetiva o que o usuário passa a ter (telas, rotas, mocks, etc.).
-2. **`README.md`** — acrescentar ou ajustar a lista de **funcionalidades / features** do projeto (ou secção equivalente), para quem abrir o repositório ver rapidamente o que já existe, sem ler só o changelog inteiro.
+- Atualizar quando houver **versão ou entrega** com mudanças notáveis (novas telas, refactors relevantes, correções), inclusive durante o desenvolvimento — é o histórico técnico do repositório.
 
-Assim o produto documentado, o histórico de releases e a porta de entrada do repo permanecem rastreáveis.
+**`README.md`**
+
+- A secção destinada a **funcionalidades para o cliente** (ou equivalente) deve incluir **apenas** o que estiver **disponível em produção** para o cliente (deploy entregue, uso real).
+- **Não** listar aí features ainda em desenvolvimento, só em branch, ou apenas em ambiente de testes interno — isso fica no changelog, issues ou documentação de sprint, conforme o fluxo do time.
+
+Assim o README permanece um resumo fiel do que o cliente pode usar; o changelog preserva o histórico completo de evolução do código.
 
 ## 8. Backlog explícito (não priorizado)
 
@@ -189,4 +193,4 @@ Itens para incrementar o spec depois: **matriz fina de permissões** além de ad
 | Data | Alteração |
 |------|-----------|
 | *(inicial)* | Versão base com módulos Login, Marketing, CRM, Vendas, Estoque. |
-| 2026-04-17 | §2.1 mocks/`be`; §5 RBAC; §6 (“Features e roles”, “Dados e API”, “Changelog e README”); §7 + §7.1; `CHANGELOG.md`. |
+| 2026-04-17 | §2.1 mocks/`be`; §5 RBAC; §6/§7.1 (changelog técnico; README = só produção cliente); §7. |

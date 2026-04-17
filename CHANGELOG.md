@@ -6,6 +6,10 @@ O formato segue a ideia de [Keep a Changelog](https://keepachangelog.com/pt-BR/1
 
 ## [Unreleased]
 
+### Changed
+
+- **Documentação:** `README.md` — secção de funcionalidades apenas para o que estiver **em produção** para o cliente; `CHANGELOG.md` segue como histórico técnico do repositório (`docs/SPEC.md` §7.1).
+
 ## [0.2.0] — 2026-04-17
 
 ### Added
@@ -23,4 +27,4 @@ O formato segue a ideia de [Keep a Changelog](https://keepachangelog.com/pt-BR/1
 - Tema global **marsala + cinza** em `src/styles/theme.css` (tokens `--ir-*` e `--bs-primary`).
 - Pastas: `src/app/`, `src/components/ui`, `src/components/layout`, `src/features/` (auth, marketing, crm, vendas, estoque), `src/mocks/`, `src/pages/`, `src/styles/`.
 - Página inicial placeholder (`/`) usando componentes Bootstrap e textos mockados em `src/mocks/index.ts`.
-- Processo documentado: atualizar este arquivo e o `README.md` a cada feature entregue (ver `docs/SPEC.md` §7.1).
+- Processo de documentação descrito em `docs/SPEC.md` §7 (evoluído depois: README voltado à produção para o cliente).

@@ -21,13 +21,13 @@ npm run build
 npm run lint
 ```
 
-## Funcionalidades (em evolução)
+## Funcionalidades em produção (cliente)
 
-Lista resumida do que já existe no frontend; a cada nova feature concluída, atualizar aqui e o [CHANGELOG.md](CHANGELOG.md) (ver `docs/SPEC.md` §7.1).
+Lista **apenas** o que já está **disponível em produção** para o cliente. Desenvolvimento em curso não entra aqui — ver [CHANGELOG.md](CHANGELOG.md) e `docs/SPEC.md` §7.1.
 
-- **Fase 1 — Fundação:** Vite + React + TypeScript, Bootstrap/react-bootstrap, tema marsala/cinza, React Router, estrutura de pastas (`app`, `components`, `features`, `mocks`, `pages`), página inicial placeholder em `/`.
-- **Fase 2 — Componentes UI:** wrappers `AppButton`, `AppBadge`, `AppTextField`, `AppCard`, `AppAlert`, `AppModal`; layout `PageContainer`, `PageHeader`, `EmptyState` (`src/components/`).
+- *(nenhuma funcionalidade listada — ainda não há release em produção para o cliente)*
 
 ## Manutenção do repositório
 
-A cada **feature** entregue: atualizar **`CHANGELOG.md`** (entrada na versão ou em *Unreleased*) e esta secção **Funcionalidades** no README.
+- **`CHANGELOG.md`:** registrar mudanças notáveis por versão (inclui evolução durante o desenvolvimento).
+- **Esta secção “Funcionalidades em produção”:** atualizar **somente** quando uma feature for **implantada em produção** para o cliente.

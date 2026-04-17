@@ -38,7 +38,8 @@ flowchart LR
 - [ ] Registrar no repositório decisões de pastas (`features/`, `components/ui/`, etc.) no README ou em ADR curto se necessário.
 - [ ] Ao definir novas rotas, alinhar com **§5** do spec (feature + role por rota).
 - [ ] Novas telas: dados via **mock** na camada de serviço/hook, nunca dependência direta ao `be` até a fase de integração.
-- [ ] A cada feature entregue: atualizar **`CHANGELOG.md`** e o **`README.md`** (lista de features do projeto), conforme **§7.1** do spec.
+- [ ] Mudanças notáveis: atualizar **`CHANGELOG.md`** conforme **§7.1** do spec.
+- [ ] **`README.md`:** atualizar a lista de **funcionalidades em produção para o cliente** apenas quando algo for **implantado em produção** — não usar essa lista para trabalho em desenvolvimento (§7.1).
 
 **Saída:** spec e plan alinhados com o time.
 
@@ -199,7 +200,7 @@ Ao receber novas informações de produto ou prioridade:
 
 1. Atualizar **`docs/SPEC.md`** e este **`docs/PLAN.md`**.
 2. Conferir no **código** se a mudança afeta algo **já implementado**. Se afetar, anotar tarefa de **refatoração/alinhamento** para o código seguir o documento (ver também §7 do spec — processo de atualização).
-3. Se a mudança corresponder a **nova feature** concluída no código, lembrar de **`CHANGELOG.md`** + **`README.md`** (§7.1 do spec).
+3. **CHANGELOG** e **README:** seguir **§7.1** do spec — changelog para histórico de versões; README (funcionalidades para o cliente) só quando houver **produção** para o cliente.
 
 ---
 
@@ -208,4 +209,4 @@ Ao receber novas informações de produto ou prioridade:
 | Data | Alteração |
 |------|-----------|
 | *(inicial)* | Plano por fases com módulos Login, Marketing, CRM, Vendas, Estoque. |
-| 2026-04-17 | Intro: mocks primeiro; Fase 0/1 (changelog+README); Fase 3–4/9; §2.1; “Processo” §7 + item changelog; CHANGELOG na Fase 1. |
+| 2026-04-17 | Intro, Fase 0/1, Fase 3–4/9, §2.1, Processo §7; README produção vs changelog técnico. |
