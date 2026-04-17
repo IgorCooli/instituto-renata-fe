@@ -6,6 +6,7 @@ import InputGroup from 'react-bootstrap/InputGroup'
 import Row from 'react-bootstrap/Row'
 import { Link, Navigate, useLocation, useNavigate } from 'react-router-dom'
 import { useAuth } from '../app/auth/useAuth'
+import { ThemeToggleScreenCorner } from '../components/ui/ThemeToggle'
 import '../styles/login.css'
 
 export function LoginPage() {
@@ -44,6 +45,7 @@ export function LoginPage() {
 
   return (
     <div className="login-page d-flex flex-column justify-content-center py-4 px-3">
+      <ThemeToggleScreenCorner />
       <div className="login-card mx-auto">
         <Row className="g-0">
           <Col xs={12} lg={6}>

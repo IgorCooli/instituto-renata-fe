@@ -6,6 +6,14 @@ O formato segue a ideia de [Keep a Changelog](https://keepachangelog.com/pt-BR/1
 
 ## [Unreleased]
 
+## [0.5.0] — 2026-04-17
+
+### Added
+
+- **Fase 5 — Tema claro/escuro:** `ThemeProvider`, `useTheme`, persistência `localStorage` (`ir_theme`), `data-bs-theme` no `<html>` (script inline em `index.html` para evitar flash).
+- Componente **`ThemeToggle`** na **navbar** (`AppShell`), **cabeçalho da home** e **acima do cartão de login**.
+- Tokens de login e superfície separados para **`light`** e **`dark`** em `theme.css`; sombra do cartão de login ajustada em `login.css`.
+
 ## [0.4.0] — 2026-04-17
 
 ### Added

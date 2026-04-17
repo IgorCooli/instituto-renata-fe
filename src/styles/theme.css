@@ -1,8 +1,9 @@
 /**
  * Tokens de tema — altere aqui para white-label / outro cliente.
- * Carregado depois do Bootstrap para sobrescrever variáveis CSS.
+ * Modo claro/escuro: `data-bs-theme` em `<html>` (ThemeProvider + Bootstrap 5.3).
  */
-:root {
+:root,
+html[data-bs-theme='light'] {
   /* Marca (marsala) */
   --ir-color-marsala: #722f37;
   --ir-color-marsala-hover: #5a252c;
@@ -20,14 +21,41 @@
   --bs-link-color: var(--ir-color-marsala);
   --bs-link-hover-color: var(--ir-color-marsala-hover);
 
-  /* Superfície */
+  /* Superfície (área logada / home) */
   --bs-body-bg: var(--ir-gray-50);
   --bs-body-color: var(--ir-gray-900);
   --bs-secondary-color: var(--ir-gray-700);
 
-  /* Login — white-label (referencia --ir-* para a marca) */
-  --login-page-bg: #0a0a0a;
+  /* Login — modo claro */
+  --login-page-bg: #ececef;
   --login-card-radius: 1rem;
+  --login-form-bg: #ffffff;
+  --login-text: #212529;
+  --login-text-muted: #6c757d;
+  --login-input-bg: #ffffff;
+  --login-input-border: #ced4da;
+  --login-input-placeholder: #868e96;
+  --login-brand-gradient: linear-gradient(
+    145deg,
+    #f5e6e8 0%,
+    var(--ir-color-marsala) 55%,
+    #4a1f24 100%
+  );
+  --login-btn-primary-bg: var(--ir-color-marsala);
+  --login-btn-primary-text: #ffffff;
+  --login-btn-primary-hover: var(--ir-color-marsala-hover);
+  --login-btn-outline-border: #ced4da;
+  --login-btn-social-bg: #f8f9fa;
+}
+
+html[data-bs-theme='dark'] {
+  --bs-body-bg: #1a1d21;
+  --bs-body-color: #e9ecef;
+  --bs-secondary-color: #adb5bd;
+  --bs-border-color: #495057;
+
+  /* Login — modo escuro */
+  --login-page-bg: #0a0a0a;
   --login-form-bg: #1c1c1e;
   --login-text: #ffffff;
   --login-text-muted: #a1a1a6;

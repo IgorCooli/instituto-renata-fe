@@ -11,6 +11,13 @@
   max-width: 56rem;
   border-radius: var(--login-card-radius);
   overflow: hidden;
+}
+
+html[data-bs-theme='light'] .login-card {
+  box-shadow: 0 0.75rem 2rem rgba(0, 0, 0, 0.12);
+}
+
+html[data-bs-theme='dark'] .login-card {
   box-shadow: 0 1.5rem 3rem rgba(0, 0, 0, 0.45);
 }
 

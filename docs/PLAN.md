@@ -13,8 +13,13 @@ flowchart LR
   subgraph shell [Shell]
     S1[Rotas + features e roles]
   end
-  subgraph features [Features]
+  subgraph auth [Auth]
     A[Login]
+  end
+  subgraph ui [UI global]
+    T[Claro / escuro]
+  end
+  subgraph features [Features]
     M[Marketing]
     C[CRM]
     V[Vendas]
@@ -22,10 +27,11 @@ flowchart LR
   end
   foundation --> shell
   shell --> A
-  shell --> M
-  shell --> C
-  shell --> V
-  shell --> E
+  A --> T
+  T --> M
+  T --> C
+  T --> V
+  T --> E
 ```
 
 *(Mermaid é opcional no visualizador; o texto abaixo é a fonte de verdade.)*
@@ -110,7 +116,24 @@ flowchart LR
 
 ---
 
-## Fase 5 — Feature: Marketing
+## Fase 5 — Tema claro / escuro (toggle global)
+
+**Objetivo:** o utilizador alternar **modo claro** e **modo escuro** em **todas** as páginas (área logada, login e home pública), com preferência **persistida** — mais simples de manter se a base (Bootstrap `data-bs-theme`, tokens CSS) estiver definida **antes** de encher módulos com telas complexas.
+
+**Passos:**
+
+1. **Provider** (ex.: `ThemeProvider`) + hook `useTheme()` com valores `light` | `dark` (ou `system` opcional depois).
+2. Aplicar no **documento** (ex.: `document.documentElement.setAttribute('data-bs-theme', …)`), alinhado ao [color modes do Bootstrap 5.3](https://getbootstrap.com/docs/5.3/customize/color-modes/).
+3. **Persistência:** `localStorage` (chave estável, ex.: `ir_theme`) para restaurar após refresh.
+4. **Toggle** visível no **topo** da UI em todas as rotas principais: colocar no **shell** (`AppShell`) e num **mini-bar** ou canto da **home** e da **login** (mesmo componente reutilizado, ex.: `ThemeToggle` em `components/ui/`).
+5. Rever **`theme.css`** e **`login.css`:** variáveis para superfície/texto em ambos os modos; evitar cores fixas que quebrem no modo escuro na área logada (Navbar, `PageContainer`, etc.).
+6. Testar **contraste** e leitura nos dois modos (ligação ao §6 — responsivo continua obrigatório).
+
+**Saída:** um único lugar controla o modo; novas telas herdam automaticamente se usarem Bootstrap/tokens.
+
+---
+
+## Fase 6 — Feature: Marketing
 
 **Objetivo:** páginas públicas conforme spec §4.2.
 
@@ -124,7 +147,7 @@ flowchart LR
 
 ---
 
-## Fase 6 — Feature: CRM
+## Fase 7 — Feature: CRM
 
 **Objetivo:** primeiro módulo de dados “ricos” conforme spec §4.3.
 
@@ -138,7 +161,7 @@ flowchart LR
 
 ---
 
-## Fase 7 — Feature: Vendas
+## Fase 8 — Feature: Vendas
 
 **Objetivo:** orçamentos/oportunidades conforme spec §4.4.
 
@@ -152,7 +175,7 @@ flowchart LR
 
 ---
 
-## Fase 8 — Feature: Estoque
+## Fase 9 — Feature: Estoque
 
 **Objetivo:** itens e movimentações conforme spec §4.5.
 
@@ -166,7 +189,7 @@ flowchart LR
 
 ---
 
-## Fase 9 — Qualidade e preparação para API
+## Fase 10 — Qualidade e preparação para API
 
 **Objetivo:** endurecer antes de integrar o repositório **backend** (quando existir); até lá o app permanece 100 % em mocks.
 
@@ -190,11 +213,12 @@ flowchart LR
 | 2 | Componentes UI base |
 | 3 | Shell + rotas + guardas (features / roles) |
 | 4 | Login |
-| 5 | Marketing |
-| 6 | CRM |
-| 7 | Vendas |
-| 8 | Estoque |
-| 9 | Qualidade + camada de API mock |
+| 5 | **Tema claro / escuro (toggle global + persistência)** |
+| 6 | Marketing |
+| 7 | CRM |
+| 8 | Vendas |
+| 9 | Estoque |
+| 10 | Qualidade + camada de API mock |
 
 ---
 
@@ -214,3 +238,4 @@ Ao receber novas informações de produto ou prioridade:
 |------|-----------|
 | *(inicial)* | Plano por fases com módulos Login, Marketing, CRM, Vendas, Estoque. |
 | 2026-04-17 | Intro (responsivo); Fase 0/2/3/9 mobile; §2.1; Processo §7; README vs changelog. |
+| 2026-04-17 | Nova **Fase 5** tema claro/escuro; Marketing→6 … Estoque→9; Qualidade→10; mermaid atualizado. |

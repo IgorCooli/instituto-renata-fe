@@ -6,6 +6,7 @@ import {
   AppButton,
   AppCard,
   AppTextField,
+  ThemeToggleScreenCorner,
 } from '../components/ui'
 import { EmptyState, PageContainer, PageHeader } from '../components/layout'
 import { mockAppName, mockTagline } from '../mocks'
@@ -15,6 +16,7 @@ export function HomePage() {
 
   return (
     <PageContainer>
+      <ThemeToggleScreenCorner />
       <PageHeader title={mockAppName} description={mockTagline} />
 
       <Stack gap={4}>

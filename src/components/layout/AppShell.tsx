@@ -5,6 +5,7 @@ import { Link, NavLink, Outlet, useNavigate } from 'react-router-dom'
 import { useAccess } from '../../app/access'
 import { useAuth } from '../../app/auth/useAuth'
 import { APP_CHILD_ROUTES } from '../../app/routeMeta'
+import { ThemeToggle } from '../ui/ThemeToggle'
 
 /** Layout da área logada: menu filtrado por features habilitadas (mock). */
 export function AppShell() {
@@ -19,7 +20,10 @@ export function AppShell() {
 
   return (
     <>
-      <Navbar bg="white" expand="lg" className="border-bottom shadow-sm">
+      <Navbar
+        expand="lg"
+        className="border-bottom shadow-sm bg-body"
+      >
         <Container fluid>
           <Navbar.Brand as={Link} to="/app">
             Consultório
@@ -40,7 +44,7 @@ export function AppShell() {
                 </Nav.Link>
               ))}
             </Nav>
-            <Nav className="ms-lg-2 align-items-lg-center flex-column flex-lg-row gap-1 gap-lg-2">
+            <Nav className="ms-lg-2 ms-lg-auto align-items-lg-center flex-column flex-lg-row gap-1 gap-lg-2">
               {session?.email ? (
                 <Navbar.Text className="small text-secondary d-none d-md-inline py-1">
                   {session.email}
@@ -57,6 +61,9 @@ export function AppShell() {
               >
                 Sair
               </Nav.Link>
+              <div className="py-1 d-flex justify-content-lg-end">
+                <ThemeToggle />
+              </div>
             </Nav>
           </Navbar.Collapse>
         </Container>

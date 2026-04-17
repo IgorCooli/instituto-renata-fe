@@ -160,7 +160,7 @@ O sistema será vendido **por pacotes**: cada cliente habilita apenas os **módu
 | Layout | Área logada com shell comum (navegação lateral ou superior); marketing pode usar layout próprio sem sidebar administrativa. **Em todos os fluxos:** navegação e conteúdo utilizáveis em **largura estreita** (celular). |
 | Responsivo | **Obrigatório:** interfaces usáveis em **smartphone** (toque, leitura, formulários, tabelas com rolagem ou padrão adaptado). Validar em viewports típicas (ex. ~360px de largura) ao entregar telas. |
 | Componentes | Botões, barras de navegação, modais, formulários vêm de `components/` (wrappers sobre Bootstrap quando fizer sentido). |
-| Tema | Cores e tokens definidos em um único lugar; troca de paleta para outro cliente sem varrer telas. |
+| Tema | Cores e tokens definidos em um único lugar; troca de paleta para outro cliente sem varrer telas. **Modo claro/escuro:** o utilizador pode alternar **light / dark** globalmente (toggle acessível em todas as telas); preferência persistida (ex.: `localStorage`) e aplicada via atributo/CSS (ex.: `data-bs-theme`), incluindo ajustes da tela de login (`docs/PLAN.md` próxima fase). |
 | Acessibilidade | Meta: contraste e foco utilizáveis; detalhar checklist depois. |
 | Internacionalização | Desejável deixar textos preparados para tradução (decisão de lib em fase de setup). |
 | Features e roles | Conforme §5: menu, rotas e ações respeitam módulos contratados e papel do usuário. |
@@ -196,4 +196,4 @@ Itens para incrementar o spec depois: **matriz fina de permissões** além de ad
 | Data | Alteração |
 |------|-----------|
 | *(inicial)* | Versão base com módulos Login, Marketing, CRM, Vendas, Estoque. |
-| 2026-04-17 | §2 dispositivos/mobile; §3 layout responsivo; §5 RBAC; §6/§7.1; §7. |
+| 2026-04-17 | §2 dispositivos/mobile; §3 layout responsivo; §5 RBAC; §6 Tema (claro/escuro + PLAN Fase 5); §7/§7.1. |
