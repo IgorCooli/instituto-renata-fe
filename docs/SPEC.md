@@ -25,7 +25,7 @@ Sistema web para **gestão de consultório** (primeiro uso: contexto odontológi
 
 - **Prioridade:** evoluir **telas e fluxos no frontend** com **mocks** (dados falsos) para visualização e validação de UX; **depois** integrar com o backend quando o `be` existir e os contratos estiverem definidos.
 - **Regra:** cada tela ou feature avançada deve expor dados através de uma **camada de acesso** (serviços/hooks) cuja implementação inicial é **mock** (objetos em memória, JSON estático ou geradores simples), **substituível** por chamadas HTTP sem reescrever componentes de tela.
-- **Spec/plan do backend:** serão tratados noutro repositório e noutro momento; não bloqueiam o desenvolvimento visual descrito aqui.
+- **Spec/plan do backend:** vivem no repositório irmão **`instituto-renata-be`** (`docs/SPEC.md`, `docs/PLAN.md`); o frontend continua a poder evoluir com mocks até a API estar disponível.
 
 ## 3. Stack técnica (alvo)
 
@@ -198,3 +198,4 @@ Itens para incrementar o spec depois: **matriz fina de permissões** além de ad
 | *(inicial)* | Versão base com módulos Login, Marketing, CRM, Vendas, Estoque. |
 | 2026-04-17 | §2 dispositivos/mobile; §3 layout responsivo; §5 RBAC; §6 Tema (claro/escuro + PLAN Fase 5); §7/§7.1. |
 | 2026-04-18 | §6 alinhado ao PLAN: Fase 6 = dashboard `/app`; marketing público = Fase 7; demais fases renumeradas no `PLAN.md`. |
+| 2026-04-18 | §2.1: referência ao `instituto-renata-be` (`docs/SPEC.md` / `docs/PLAN.md`). |
