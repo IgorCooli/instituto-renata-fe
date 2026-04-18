@@ -45,6 +45,7 @@ flowchart LR
 ## Fase 0 — Documentação e convenções
 
 - [ ] Manter `docs/SPEC.md` atualizado quando novas telas ou regras forem definidas.
+- [ ] Manter **`docs/CONTEXT.md`** alinhado ao **`docs/PROMPT.md`** quando o estado do projeto mudar (resumo para IA / cargas rápidas).
 - [ ] Registrar no repositório decisões de pastas (`features/`, `components/ui/`, etc.) no README ou em ADR curto se necessário.
 - [ ] Ao definir novas rotas, alinhar com **§5** do spec (feature + role por rota).
 - [ ] Novas telas: dados via **mock** na camada de serviço/hook, nunca dependência direta ao `be` até a fase de integração.
@@ -200,7 +201,7 @@ Marketing divide-se em **dois entregáveis** no spec (§4.2): **área logada** (
 
 **Entregas parciais (tela inicial):**
 
-- [x] **Vendas** — rota `/app/vendas`, vista **Transações** (KPIs, mês/ano, busca, tabela mock, sidebar do módulo); `VendasPage.tsx`, `mocks/vendas.ts`.
+- [x] **Vendas** — `/app/vendas` **Transações** (`VendasTransacoesPage.tsx`, `mocks/vendas.ts`); `/app/vendas/leads` **Leads** (KPIs, filtros, tabela mock, CSV/+Lead em placeholder); `VendasLeadsPage.tsx`, `mocks/vendas-leads.ts`.
 
 **Fora do âmbito desta fase:** CRUD completo, filtros avançados, integração HTTP — isso entra nas **Fases 9–11** e na **Fase 12** (qualidade/API).
 
@@ -312,3 +313,4 @@ Ao receber novas informações de produto ou prioridade:
 | 2026-04-19 | **Fase 7** dividida em **7.1** (marketing interno em `/app/marketing`, entregue) e **7.2** (site público, pendente); tabela “Ordem resumida” atualizada. |
 | 2026-04-19 | Nova **Fase 8** — **telas iniciais** (referência visual / prints), priorizada antes dos módulos profundos; **CRM / Vendas / Estoque / Qualidade** renumerados para **9–12**; diagrama mermaid atualizado. |
 | 2026-04-19 | Fase 8: entrega **Vendas / Transações** (`/app/vendas`); secção *Entregas parciais* no plano. |
+| 2026-04-19 | Fase 8: **Vendas / Leads** (`/app/vendas/leads`); rotas aninhadas sob `vendas`; sidebar Leads ativa. |

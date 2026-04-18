@@ -102,7 +102,8 @@ function matchesQuery(row: VendaTransactionRow, q: string): boolean {
   )
 }
 
-export function VendasPage() {
+/** Rota index `/app/vendas` — Transações. */
+export function VendasTransacoesPage() {
   const [monthIndex, setMonthIndex] = useState<number>(MOCK_VENDAS_PERIOD.monthIndex)
   const [year, setYear] = useState<number>(MOCK_VENDAS_PERIOD.year)
   const [query, setQuery] = useState('')

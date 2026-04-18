@@ -9,7 +9,7 @@ Este ficheiro existe para **sessões novas** (outro chat, outro dia, outro dev):
 - **O que já foi feito** — secção *O que já foi feito (resumo)* (tabela ou bullets).
 - **Os próximos passos** — secção *Próximo passo sugerido*, alinhada ao `docs/PLAN.md` e ao estado real do código.
 
-O **`CHANGELOG.md`** continua a registar *o quê* mudou por versão; o **PROMPT** é o **estado atual em linguagem natural** para quem abre o projeto de novo. Se o `PLAN.md` ou o `SPEC.md` mudarem de forma material, o PROMPT deve acompanhar.
+O **`CHANGELOG.md`** continua a registar *o quê* mudou por versão; o **PROMPT** é o **estado atual em linguagem natural** para quem abre o projeto de novo. Se o `PLAN.md` ou o `SPEC.md` mudarem de forma material, o PROMPT deve acompanhar. O **`docs/CONTEXT.md`** é um **resumo curto** para cargas rápidas (especialmente assistentes IA); atualizar também quando o estado material mudar, para não divergir do PROMPT.
 
 **Regra explícita para assistentes de IA:** ao concluir **qualquer tarefa** que altere o repositório de forma a mudar “o que está feito” ou “o que falta a seguir”, **não encerrar** sem atualizar as secções acima neste ficheiro. Isto inclui novas features, refactors que mudem fluxos, integração com API, e correções que alterem comportamento visível ou contratos. **Única exceção:** mudanças puramente cosméticas sem impacto no produto (ex.: typo em texto que não reflita novo estado). Em caso de dúvida, **atualiza o PROMPT**.
 
@@ -30,18 +30,19 @@ Antes de editar código, confirma:
 
 **Sistema web de gestão de consultório** (primeiro uso pensado para contexto odontológico, mas UI e domínio genéricos: “paciente”, “item”, etc.). É **multi-cliente** por pacotes de módulos: cada tenant só vê os módulos contratados (**features**: `marketing`, `crm`, `vendas`, `estoque`). Utilizadores têm papel **`admin`** ou **`common`**.
 
-- **Repositório irmão:** API real em **`instituto-renata-be`** (Go + PostgreSQL). Até a integração HTTP, o frontend usa **mocks** (`mockLogin`, `sessionStorage`, `enabledFeatures` na sessão).
+- **Repositório irmão:** API HTTP em **`instituto-renata-be`**, organizada em **Clean Architecture** (ver `docs/SPEC.md` §3.2). Até a integração HTTP, o frontend usa **mocks** (`mockLogin`, `sessionStorage`, `enabledFeatures` na sessão).
 - **Responsivo é obrigatório** (mobile-first onde fizer sentido).
 
 ---
 
 ## Por onde começar (ordem de leitura)
 
-1. Este guia (**`docs/PROMPT.md`**) — contexto + estado atual.
-2. **`docs/SPEC.md`** — produto, módulos §4, RBAC §5, requisitos transversais §6, processo §7.
-3. **`docs/PLAN.md`** — fases numeradas; **fonte de verdade** para “o que falta”.
-4. **`CHANGELOG.md`** (na raiz) — o que já entrou no código por versão (inclui [Unreleased]).
-5. **`README.md`** — como correr o projeto e regra da secção “Funcionalidades em produção”.
+1. Opcional (sessões IA / economia de contexto): **`docs/CONTEXT.md`** — resumo denso (stack, rotas, ficheiros-chave, regras).
+2. Este guia (**`docs/PROMPT.md`**) — contexto + estado atual.
+3. **`docs/SPEC.md`** — produto, módulos §4, RBAC §5, requisitos transversais §6, processo §7.
+4. **`docs/PLAN.md`** — fases numeradas; **fonte de verdade** para “o que falta”.
+5. **`CHANGELOG.md`** (na raiz) — o que já entrou no código por versão (inclui [Unreleased]).
+6. **`README.md`** — como correr o projeto e regra da secção “Funcionalidades em produção”.
 
 ---
 
@@ -57,16 +58,16 @@ Antes de editar código, confirma:
 | 6 | Tela de início `/app` (dashboard, cartões dos módulos, onboarding, complementos genéricos) | Feito |
 | 7.1 | Marketing interno `/app/marketing` (metas, campanhas mock, tabela + busca) | Feito |
 | 7.2 | Marketing público (landing institucional, rota pública) | Pendente — ver `docs/PLAN.md` §7.2 |
-| 8 | **Telas iniciais** (prints / referência visual) | **Em curso** — **Vendas / Transações** (`/app/vendas`) entregue; CRM e Estoque pendentes; ver **`docs/PLAN.md`** (Fase 8) |
+| 8 | **Telas iniciais** (prints / referência visual) | **Em curso** — **Vendas**: Transações + Leads; CRM e Estoque pendentes; ver **`docs/PLAN.md`** (Fase 8) |
 | 9–11 | CRM / Vendas / Estoque **profundos** (CRUD, listas, fluxos) | Planeado após Fase 8 |
 | 12 | Qualidade + preparação para API | Planeado |
 | 0 | Documentação contínua (SPEC/PLAN/README/changelog) | **Contínuo** — ver checklists no `docs/PLAN.md` |
 
-**Rotas úteis:** `/` (home pública), `/login`, `/app` (dashboard), `/app/marketing`, `/app/crm` (stub), **`/app/vendas`** (Transações — tela inicial Fase 8), `/app/estoque` (stub ou em evolução conforme PLAN).
+**Rotas úteis:** `/` (home pública), `/login`, `/app` (dashboard), `/app/marketing`, `/app/crm` (stub), **`/app/vendas`** (Transações), **`/app/vendas/leads`** (Leads), `/app/estoque` (stub ou em evolução conforme PLAN).
 
 **Layout área logada:** o **início** (`/app` index) **não** tem navbar superior nem lateral — apenas **`ThemeToggleScreenCorner`** e o conteúdo do dashboard. As **telas de módulo** (`/app/marketing`, etc.) usam **`AppFeatureShell`**: sidebar lateral (título do módulo, links configuráveis em `featureSidebar.ts`, itens “Em breve” desativados), barra superior fina com **← Voltar** para `/app`, **tema** e avatar; rodapé da sidebar com perfil e **Sair**.
 
-**Ficheiros-chave:** `src/app/AppRoutes.tsx`, `src/app/routeMeta.ts`, `src/app/featureSidebar.ts`, `src/app/auth/`, `src/app/access/`, `src/app/theme/`, `src/components/layout/AppShell.tsx`, `src/components/layout/AppFeatureShell.tsx`, `src/styles/app-feature-shell.css`, `src/pages/app/AppDashboardPage.tsx`, `src/pages/app/MarketingPage.tsx`, `src/mocks/marketing.ts`, `src/styles/marketing-page.css`, `src/pages/app/VendasPage.tsx`, `src/mocks/vendas.ts`, `src/styles/vendas-page.css`.
+**Ficheiros-chave:** `src/app/AppRoutes.tsx`, `src/app/routeMeta.ts`, `src/app/featureSidebar.ts`, `src/app/auth/`, `src/app/access/`, `src/app/theme/`, `src/components/layout/AppShell.tsx`, `src/components/layout/AppFeatureShell.tsx`, `src/styles/app-feature-shell.css`, `src/pages/app/AppDashboardPage.tsx`, `src/pages/app/MarketingPage.tsx`, `src/mocks/marketing.ts`, `src/styles/marketing-page.css`, `src/pages/app/VendasTransacoesPage.tsx`, `src/pages/app/VendasLeadsPage.tsx`, `src/mocks/vendas.ts`, `src/mocks/vendas-leads.ts`, `src/styles/vendas-page.css`, `src/styles/vendas-leads-page.css`.
 
 **Contrato alinhado ao backend (quando integrar):** o FE deve continuar a poder representar `AuthSession` como hoje; detalhes em **`instituto-renata-be/docs/SPEC.md`** §6. Até lá, **`src/app/auth/mockLogin.ts`** simula login.
 
@@ -78,7 +79,7 @@ Antes de editar código, confirma:
 
 Pelo **`docs/PLAN.md`**:
 
-- **Fase 8 — Telas iniciais dos módulos:** **`/app/vendas`** (Transações) feito; seguir com **`/app/crm`**, **`/app/estoque`**, etc., **print a print**; **7.2** (marketing público) pode entrar aqui ou em paralelo.
+- **Fase 8 — Telas iniciais dos módulos:** **`/app/vendas`** (Transações) e **`/app/vendas/leads`** (Leads) feitos; seguir com **`/app/crm`**, **`/app/estoque`**, etc., **print a print**; **7.2** (marketing público) pode entrar aqui ou em paralelo.
 - **Fase 7.2 — Marketing (público):** landing/site institucional (se não for tratada dentro da Fase 8).
 - Depois **Fases 9–11:** CRM, Vendas, Estoque com dados mock **ricos** (listas completas, CRUD, fluxos).
 - **Fase 12:** qualidade e preparação para API (camada `services` trocável por HTTP).
@@ -110,11 +111,11 @@ npm run lint
 
 ## Ligação ao backend
 
-- Repositório irmão: clonar **`instituto-renata-be`** ao lado deste projeto (mesmo diretório pai) para trabalhar contratos; spec da API: `instituto-renata-be/docs/SPEC.md`.
+- Repositório irmão: clonar **`instituto-renata-be`** ao lado deste projeto (mesmo diretório pai) para trabalhar contratos; spec da API: `instituto-renata-be/docs/SPEC.md`. A stack concreta do serviço é **definida nesse repositório**; o frontend depende apenas de **HTTP + contratos** (ver `docs/SPEC.md` §3.2).
 - **URL da API por ambiente:** ver **`docs/SPEC.md` §3.1** — variável **`VITE_API_BASE_URL`** (local vs produção); cliente HTTP deve usar esta base para todos os endpoints.
 - Contrato de sessão alvo: `email`, `role`, `enabledFeatures` (ver §6 do SPEC do `be`).
 - O frontend já persiste sessão mock em `sessionStorage` (`ir_auth_session`).
 
 ---
 
-*Última atualização deste guia: 2026-04-19 — Fase 8: tela **Vendas / Transações** entregue; próximas telas iniciais (CRM, Estoque, …) conforme prints.*
+*Última atualização deste guia: 2026-04-19 — Backend descrito como API + Clean Architecture (`docs/SPEC.md` §3.2), sem stack concreta no FE; Vendas Transações + Leads; próximas telas iniciais conforme prints.*

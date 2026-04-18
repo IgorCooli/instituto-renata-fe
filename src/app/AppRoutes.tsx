@@ -1,10 +1,11 @@
-import { Route, Routes } from 'react-router-dom'
+import { Outlet, Route, Routes } from 'react-router-dom'
 import { AppFeatureShell, AppShell } from '../components/layout'
 import { AppDashboardPage } from '../pages/app/AppDashboardPage'
 import { CrmPage } from '../pages/app/CrmPage'
 import { EstoquePage } from '../pages/app/EstoquePage'
 import { MarketingPage } from '../pages/app/MarketingPage'
-import { VendasPage } from '../pages/app/VendasPage'
+import { VendasLeadsPage } from '../pages/app/VendasLeadsPage'
+import { VendasTransacoesPage } from '../pages/app/VendasTransacoesPage'
 import { HomePage } from '../pages/HomePage'
 import { LoginPage } from '../pages/LoginPage'
 import { RequireAccess } from './RequireAccess'
@@ -45,10 +46,13 @@ export function AppRoutes() {
             path="vendas"
             element={
               <RequireAccess feature="vendas">
-                <VendasPage />
+                <Outlet />
               </RequireAccess>
             }
-          />
+          >
+            <Route index element={<VendasTransacoesPage />} />
+            <Route path="leads" element={<VendasLeadsPage />} />
+          </Route>
           <Route
             path="estoque"
             element={

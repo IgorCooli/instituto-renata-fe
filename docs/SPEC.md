@@ -47,7 +47,38 @@ Sistema web para **gestão de consultório** (primeiro uso: contexto odontológi
 - **Ficheiros:** `.env.development`, `.env.production` e, se necessário, `.env.local` (gitignored para segredos locais); **`.env.example`** na raiz do repositório lista as chaves com valores placeholder — **sem** credenciais reais versionadas.
 - **Implementação:** centralizar leitura num módulo único (ex.: `src/config/env.ts`) que usa `import.meta.env.VITE_API_BASE_URL`; **proibido** espalhar URLs literais da API em componentes. Enquanto a integração for só mock, o valor pode ser vazio ou apontar para um stub documentado no código.
 - **Segurança:** tokens, segredos e chaves privadas **não** devem ir em variáveis `VITE_*` (ficam expostas no JavaScript público). Usar `VITE_*` apenas para **origem pública** da API. Autenticação (cookies `HttpOnly`, header `Authorization`, etc.) segue o contrato definido com o backend.
-- **Nota:** no backend, a variável **`ENV`** define o perfil do **processo** e da **ligação ao PostgreSQL** (`instituto-renata-be/docs/SPEC.md` §7.2). Isto é **independente** de `VITE_API_BASE_URL`, que só define **para qual host/porta o frontend envia** os pedidos HTTP.
+- **Nota:** perfis de ambiente, persistência e segredos do **serviço de API** são responsabilidade do repositório **`instituto-renata-be`** (ver o spec desse repositório). Isto é **independente** de `VITE_API_BASE_URL`, que só define **para qual host/porta o browser envia** os pedidos HTTP.
+
+### 3.2 Arquitetura (Clean Architecture)
+
+O sistema de API no repositório irmão segue a **Clean Architecture** (Robert C. Martin): separação em camadas, **regra de dependência** (código de negócio no centro; dependências apontam para dentro) e independência de frameworks e de detalhes de infraestrutura.
+
+**Diagrama de referência** (estilo “anéis”, Uncle Bob):
+
+![Clean Architecture — camadas e dependências](assets/clean-architecture-uncle-bob.png)
+
+**Legenda do diagrama:**
+
+| Camada | Papel |
+|--------|--------|
+| **Core (Entities + Use Cases)** | Lógica de negócio: entidades e casos de uso; não conhece HTTP, BD nem UI. |
+| **Entrypoints** (ex.: REST, jobs) | Pontos de entrada à aplicação: adaptam pedidos externos para os casos de uso. |
+| **Data providers** (ex.: BD, rede, …) | Implementações que **obtêm e persistem** dados; implementam interfaces definidas no core. |
+| **Configuration** | Composição, injeção de dependências e arranque: “liga” camadas sem acoplar o domínio a detalhes. |
+
+**Regra de dependência:** as setas representam **dependências** no código; o interior (**Entities**, **Use Cases**) não depende do exterior.
+
+**Neste repositório (frontend React)** o mapeamento recomendado é coerente com o mesmo princípio:
+
+| Camada Clean (ideia) | Onde no `fe` |
+|-------------------|-------------|
+| Entities / regras puras | Tipos e funções de domínio sem React/HTTP (ex.: `src/types/`, utilitários de negócio). |
+| Use cases | Hooks ou serviços que orquestram fluxos (`src/app/auth/`, `src/mocks/` ou futuros `services/` que chamam portas). |
+| Data providers | Implementações **mock** hoje; amanhã clientes HTTP/`fetch` contra `VITE_API_BASE_URL`, atrás dos mesmos contratos. |
+| Entrypoints | Rotas, páginas e componentes que disparam ações (`src/pages/`, `AppRoutes`, formulários). |
+| Configuration | `main.tsx`, providers (`ThemeProvider`, `AuthProvider`), `src/config/env.ts`, registo de rotas. |
+
+**Nota:** a **linguagem ou stack** do repositório `instituto-renata-be` não é prescrita neste documento; o contrato relevante para o frontend é **HTTP + contratos de dados** (ver spec do `be`).
 
 ## 4. Módulos e escopo por feature
 
@@ -221,3 +252,4 @@ Itens para incrementar o spec depois: **matriz fina de permissões** além de ad
 | 2026-04-18 | §2.1: referência ao `instituto-renata-be` (`docs/SPEC.md` / `docs/PLAN.md`). |
 | 2026-04-19 | §3.1: variável `VITE_API_BASE_URL` para URL base da API (local vs produção); §6 tabela Dados e API. |
 | 2026-04-19 | §6 Tema: referência ao PLAN **Fase 8** (telas iniciais por módulo) e **Fases 9–11** (módulos profundos). |
+| 2026-04-19 | §3.1: nota ao backend sem stack ou BD prescritos no FE; **§3.2** Clean Architecture (diagrama, legenda, mapeamento no React); `docs/assets/clean-architecture-uncle-bob.png`; README e PROMPT. |

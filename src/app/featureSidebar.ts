@@ -12,7 +12,7 @@ export type FeatureSidebarLink = {
 const SUBTITLE: Record<FeatureId, string> = {
   marketing: 'Campanhas e leads',
   crm: 'Relacionamento e contatos',
-  vendas: 'Pipeline e conversão…',
+  vendas: 'Pipeline e conversões',
   estoque: 'Itens e movimentações',
 }
 
@@ -28,7 +28,7 @@ const LINKS: Record<FeatureId, FeatureSidebarLink[]> = {
   crm: [{ label: 'Visão geral', pathSuffix: '' }],
   vendas: [
     { label: 'Transações', pathSuffix: '' },
-    { label: 'Leads', pathSuffix: 'leads', soon: true },
+    { label: 'Leads', pathSuffix: 'leads' },
     { label: 'Pipeline', pathSuffix: 'pipeline', soon: true },
     { label: 'Atividades', pathSuffix: 'atividades', soon: true },
     { label: 'Vendedores', pathSuffix: 'vendedores', soon: true },

@@ -1,0 +1,204 @@
+/**
+ * Vendas — aba Leads (complementa tokens em vendas-page.css para botão dourado / FAB).
+ */
+
+.ir-vendas-leads-page {
+  --ir-v-leads-blue: #58a6ff;
+  --ir-v-leads-purple: #a371f7;
+  --ir-v-leads-green: #3fb950;
+}
+
+.ir-vendas-leads-title-icon {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bs-secondary-bg);
+  color: var(--ir-v-leads-blue);
+}
+
+.ir-vendas-leads-summary {
+  border-radius: 0.75rem;
+  border: 1px solid var(--bs-border-color);
+  padding: 1rem 1.25rem;
+  text-align: left;
+  width: 100%;
+  background: var(--bs-body-bg);
+  transition: box-shadow 0.15s ease, border-color 0.15s ease;
+}
+
+.ir-vendas-leads-summary:hover {
+  border-color: var(--bs-secondary-color);
+}
+
+.ir-vendas-leads-summary__value {
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.ir-vendas-leads-summary__label {
+  font-size: 0.85rem;
+  color: var(--bs-secondary-color);
+  margin-top: 0.25rem;
+}
+
+.ir-vendas-leads-summary--leads {
+  border-left: 4px solid var(--ir-v-leads-blue);
+}
+
+.ir-vendas-leads-summary--pipeline {
+  border-left: 4px solid var(--ir-v-leads-purple);
+}
+
+.ir-vendas-leads-summary--clientes {
+  border-left: 4px solid var(--ir-v-leads-green);
+}
+
+.ir-vendas-leads-summary--active {
+  box-shadow: 0 0 0 2px var(--ir-v-leads-purple);
+  border-color: transparent;
+}
+
+.ir-vendas-leads-summary--active.ir-vendas-leads-summary--leads {
+  box-shadow: 0 0 0 2px var(--ir-v-leads-blue);
+}
+
+.ir-vendas-leads-summary--active.ir-vendas-leads-summary--clientes {
+  box-shadow: 0 0 0 2px var(--ir-v-leads-green);
+}
+
+.ir-vendas-leads-pill {
+  border-radius: 999px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding: 0.4rem 0.9rem;
+}
+
+.ir-vendas-leads-pill--active {
+  background: var(--ir-vendas-gold, #c4a574);
+  color: var(--ir-vendas-gold-text, #1a1d21);
+  border: none;
+}
+
+.ir-vendas-leads-stage {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.25rem 0.5rem;
+  border-radius: 999px;
+  background: var(--bs-secondary-bg);
+  color: var(--bs-body-color);
+  max-width: 11rem;
+}
+
+.ir-vendas-leads-origin {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.875rem;
+  max-width: 12rem;
+}
+
+.ir-vendas-leads-table-wrap {
+  border-radius: 0 0 0.75rem 0.75rem;
+  border: 1px solid var(--bs-border-color);
+  border-top: none;
+  overflow: auto;
+}
+
+.ir-vendas-leads-table-wrap .table thead th {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--bs-secondary-color);
+  white-space: nowrap;
+}
+
+.ir-vendas-leads-fab {
+  position: fixed;
+  right: 1.25rem;
+  bottom: 1.25rem;
+  z-index: 1030;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0.25rem 1rem rgba(0, 0, 0, 0.2);
+}
+
+/* Dropdown de etapa (funil) — borda dourada no trigger, lista escura, item ativo em teal */
+.ir-vendas-leads-page .ir-vendas-stage-dd__toggle {
+  --ir-stage-gold: var(--ir-vendas-gold, #c4a574);
+  border-color: var(--ir-stage-gold) !important;
+  color: var(--bs-body-color);
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 0.35rem 0.65rem;
+  border-radius: 0.5rem;
+  max-width: 11rem;
+}
+
+.ir-vendas-leads-page .ir-vendas-stage-dd__toggle:hover,
+.ir-vendas-leads-page .ir-vendas-stage-dd__toggle:focus,
+.ir-vendas-leads-page .ir-vendas-stage-dd__toggle:active,
+.ir-vendas-leads-page .ir-vendas-stage-dd__toggle.show {
+  border-color: var(--ir-stage-gold) !important;
+  background: var(--bs-body-bg) !important;
+  color: var(--bs-body-color) !important;
+}
+
+.ir-vendas-leads-page .ir-vendas-stage-dd__toggle::after {
+  margin-left: 0.25rem;
+  vertical-align: 0.15em;
+}
+
+.ir-vendas-stage-dd__menu {
+  min-width: 13.5rem;
+  padding: 0.35rem;
+  border-radius: 0.5rem;
+  border: 1px solid var(--bs-border-color);
+  background: var(--bs-body-bg);
+  z-index: 1050;
+}
+
+.ir-vendas-stage-dd__item {
+  font-size: 0.8rem;
+  padding: 0.45rem 0.5rem !important;
+  border-radius: 0.35rem;
+  color: var(--bs-body-color);
+}
+
+.ir-vendas-stage-dd__item:hover,
+.ir-vendas-stage-dd__item:focus {
+  background: var(--bs-secondary-bg) !important;
+  color: var(--bs-body-color) !important;
+}
+
+.ir-vendas-stage-dd__item--active {
+  background: rgba(45, 212, 191, 0.18) !important;
+  color: #5eead4 !important;
+}
+
+.ir-vendas-stage-dd__item--active .text-secondary {
+  color: #5eead4 !important;
+}
+
+.ir-vendas-stage-dd__check {
+  width: 1rem;
+  display: inline-flex;
+  justify-content: center;
+  font-size: 0.75rem;
+  color: #2dd4bf;
+  font-weight: 700;
+}
+
+.ir-vendas-stage-dd__check--placeholder {
+  visibility: hidden;
+}

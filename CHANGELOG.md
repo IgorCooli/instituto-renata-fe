@@ -8,10 +8,13 @@ O formato segue a ideia de [Keep a Changelog](https://keepachangelog.com/pt-BR/1
 
 ### Added
 
+- **Vendas — Leads (`/app/vendas/leads`):** cartões resumo (Leads / Pipeline / Clientes), filtros em pills, dropdown de etapa, busca, tabela com checkbox (placeholder), origem e etapa com ícones; botões **CSV** e **+ Lead** e FAB em placeholder. Rotas aninhadas em `vendas` (`index` = Transações, `leads` = Leads). Dados em `src/mocks/vendas-leads.ts`; `src/styles/vendas-leads-page.css`; `VendasTransacoesPage.tsx` (antes conteúdo único de `VendasPage`).
 - **Vendas (`/app/vendas`) — Transações (Fase 8):** KPIs (faturamento, quantidade, ticket médio), seletor de mês/ano com navegação, busca na tabela, lista mock de transações com estratégia (badges), pagamento e avatar de cliente; botão **Nova Venda** e FAB de suporte em placeholder. Dados em `src/mocks/vendas.ts`; estilos em `src/styles/vendas-page.css`. Sidebar do módulo com itens alinhados ao produto (demais rotas “Em breve”).
 
 ### Changed
 
+- **Documentação:** `docs/CONTEXT.md` — resumo denso para IA/devs (rotas, sessão, mocks, mapa de docs); `docs/PROMPT.md` e README com referência e regra de manutenção conjunta com o PROMPT.
+- **Documentação:** `docs/SPEC.md` §3.2 — **Clean Architecture** (diagrama Uncle Bob, legenda, mapeamento no frontend); removidas referências a **linguagem ou stack concretas** do backend no FE; `docs/assets/clean-architecture-uncle-bob.png`; README e PROMPT atualizados.
 - **Documentação:** `docs/PLAN.md` — nova **Fase 8** (telas iniciais dos módulos com referência visual / prints), priorizada antes dos módulos profundos; **CRM, Vendas, Estoque, Qualidade** renumerados para **9–12**. `docs/SPEC.md` §6 e `docs/PROMPT.md` alinhados.
 
 ## [0.6.0] — 2026-04-19
