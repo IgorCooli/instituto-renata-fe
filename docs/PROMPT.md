@@ -58,16 +58,16 @@ Antes de editar código, confirma:
 | 6 | Tela de início `/app` (dashboard, cartões dos módulos, onboarding, complementos genéricos) | Feito |
 | 7.1 | Marketing interno `/app/marketing` (metas, campanhas mock, tabela + busca) | Feito |
 | 7.2 | Marketing público (landing institucional, rota pública) | Pendente — ver `docs/PLAN.md` §7.2 |
-| 8 | **Telas iniciais** (prints / referência visual) | **Em curso** — **Vendas**: Transações + Leads; CRM e Estoque pendentes; ver **`docs/PLAN.md`** (Fase 8) |
+| 8 | **Telas iniciais** (prints / referência visual) | **Em curso** — **Vendas:** Transações, Leads, Pipeline, Vendedores, Produtos & Precificação; **CRM** e **Estoque** ainda stub; restantes itens Vendas na sidebar (Atividades, Orçamentos, …) em “Em breve”; ver **`docs/PLAN.md`** (Fase 8) |
 | 9–11 | CRM / Vendas / Estoque **profundos** (CRUD, listas, fluxos) | Planeado após Fase 8 |
 | 12 | Qualidade + preparação para API | Planeado |
 | 0 | Documentação contínua (SPEC/PLAN/README/changelog) | **Contínuo** — ver checklists no `docs/PLAN.md` |
 
-**Rotas úteis:** `/` (home pública), `/login`, `/app` (dashboard), `/app/marketing`, `/app/crm` (stub), **`/app/vendas`** (Transações), **`/app/vendas/leads`** (Leads), `/app/estoque` (stub ou em evolução conforme PLAN).
+**Rotas úteis:** `/` (home pública), `/login`, `/app` (dashboard), `/app/marketing`, `/app/crm` (stub), **`/app/vendas`** (Transações), **`/app/vendas/leads`**, **`/app/vendas/pipeline`**, **`/app/vendas/vendedores`**, **`/app/vendas/produtos-precificacao`**, `/app/estoque` (stub ou em evolução conforme PLAN).
 
 **Layout área logada:** o **início** (`/app` index) **não** tem navbar superior nem lateral — apenas **`ThemeToggleScreenCorner`** e o conteúdo do dashboard. As **telas de módulo** (`/app/marketing`, etc.) usam **`AppFeatureShell`**: sidebar lateral (título do módulo, links configuráveis em `featureSidebar.ts`, itens “Em breve” desativados), barra superior fina com **← Voltar** para `/app`, **tema** e avatar; rodapé da sidebar com perfil e **Sair**.
 
-**Ficheiros-chave:** `src/app/AppRoutes.tsx`, `src/app/routeMeta.ts`, `src/app/featureSidebar.ts`, `src/app/auth/`, `src/app/access/`, `src/app/theme/`, `src/components/layout/AppShell.tsx`, `src/components/layout/AppFeatureShell.tsx`, `src/styles/app-feature-shell.css`, `src/pages/app/AppDashboardPage.tsx`, `src/pages/app/MarketingPage.tsx`, `src/mocks/marketing.ts`, `src/styles/marketing-page.css`, `src/pages/app/VendasTransacoesPage.tsx`, `src/pages/app/VendasLeadsPage.tsx`, `src/mocks/vendas.ts`, `src/mocks/vendas-leads.ts`, `src/styles/vendas-page.css`, `src/styles/vendas-leads-page.css`.
+**Ficheiros-chave (vendas):** `src/pages/app/VendasTransacoesPage.tsx`, `VendasLeadsPage.tsx`, `VendasPipelinePage.tsx`, `VendasVendedoresPage.tsx`, `VendasProdutosPrecificacaoPage.tsx`; `src/mocks/vendas.ts`, `vendas-leads.ts`, `vendas-pipeline.ts`, `vendas-vendedores.ts`, `vendas-produtos-precificacao.ts`; `src/styles/vendas-page.css`, `vendas-leads-page.css`, `vendas-pipeline-page.css`, `vendas-vendedores-page.css`, `vendas-produtos-precificacao-page.css`; `src/components/vendas/PipelineDealCard.tsx`. **Resto:** `src/app/AppRoutes.tsx`, `routeMeta.ts`, `featureSidebar.ts`, `src/app/auth/`, `access/`, `theme/`, `src/components/layout/AppShell.tsx`, `AppFeatureShell.tsx`, `src/styles/app-feature-shell.css`, `AppDashboardPage.tsx`, `MarketingPage.tsx`, `src/mocks/marketing.ts`, `marketing-page.css`.
 
 **Contrato alinhado ao backend (quando integrar):** o FE deve continuar a poder representar `AuthSession` como hoje; detalhes em **`instituto-renata-be/docs/SPEC.md`** §6. Até lá, **`src/app/auth/mockLogin.ts`** simula login.
 
@@ -79,7 +79,7 @@ Antes de editar código, confirma:
 
 Pelo **`docs/PLAN.md`**:
 
-- **Fase 8 — Telas iniciais dos módulos:** **`/app/vendas`** (Transações) e **`/app/vendas/leads`** (Leads) feitos; seguir com **`/app/crm`**, **`/app/estoque`**, etc., **print a print**; **7.2** (marketing público) pode entrar aqui ou em paralelo.
+- **Fase 8 — Telas iniciais:** no **Vendas**, as rotas **Transações**, **Leads**, **Pipeline**, **Vendedores** e **Produtos & Precificação** estão entregues com mock; seguir com as entradas ainda “Em breve” na sidebar (**Atividades**, **Orçamentos**, **Etiquetas**, **Playbook**) se houver print, ou com **`/app/crm`** e **`/app/estoque`** (stubs → primeira tela), **print a print**; **7.2** (marketing público) pode entrar aqui ou em paralelo.
 - **Fase 7.2 — Marketing (público):** landing/site institucional (se não for tratada dentro da Fase 8).
 - Depois **Fases 9–11:** CRM, Vendas, Estoque com dados mock **ricos** (listas completas, CRUD, fluxos).
 - **Fase 12:** qualidade e preparação para API (camada `services` trocável por HTTP).
@@ -118,4 +118,4 @@ npm run lint
 
 ---
 
-*Última atualização deste guia: 2026-04-19 — Backend descrito como API + Clean Architecture (`docs/SPEC.md` §3.2), sem stack concreta no FE; Vendas Transações + Leads; próximas telas iniciais conforme prints.*
+*Última atualização deste guia: 2026-04-17 — Vendas: Transações, Leads, Pipeline, Vendedores, Produtos & Precificação documentados em CONTEXT/PLAN; próximas telas iniciais (CRM/Estoque ou restantes itens Vendas) conforme `PLAN.md`.*

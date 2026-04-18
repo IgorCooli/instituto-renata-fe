@@ -146,6 +146,8 @@ O módulo **marketing** no pacote do tenant pode incluir: **(A)** telas **intern
 - Detalhe de uma venda/orçamento (itens, totais, responsável).
 - Fluxo mínimo de criação/edição (itens linha a linha podem ser incremento posterior).
 
+**No frontend (dados mock, ver `PLAN.md` Fase 8):** o módulo **Vendas** já expõe telas iniciais para **Transações**, **Leads**, **Pipeline** (quadro tipo Kanban), **Vendedores** e **Produtos & Precificação** (rotas sob `/app/vendas/...`); outras entradas de menu podem permanecer em placeholder até haver referência ou API.
+
 **Notas:** integração com pagamento e NF é backend; UI prevê apenas pontos de extensão (ex.: botão “registrar pagamento” desabilitado até haver API).
 
 ---

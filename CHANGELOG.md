@@ -16,7 +16,7 @@ O formato segue a ideia de [Keep a Changelog](https://keepachangelog.com/pt-BR/1
 
 ### Changed
 
-- **Documentação:** `docs/CONTEXT.md` — resumo denso para IA/devs (rotas, sessão, mocks, mapa de docs); `docs/PROMPT.md` e README com referência e regra de manutenção conjunta com o PROMPT.
+- **Documentação:** `docs/CONTEXT.md`, `docs/PROMPT.md`, `docs/PLAN.md` e `docs/SPEC.md` §4.4 — alinhados às rotas e telas do módulo **Vendas** (Pipeline, Vendedores, Produtos & Precificação) e ao estado da Fase 8.
 - **Documentação:** `docs/SPEC.md` §3.2 — **Clean Architecture** (diagrama Uncle Bob, legenda, mapeamento no frontend); removidas referências a **linguagem ou stack concretas** do backend no FE; `docs/assets/clean-architecture-uncle-bob.png`; README e PROMPT atualizados.
 - **Documentação:** `docs/PLAN.md` — nova **Fase 8** (telas iniciais dos módulos com referência visual / prints), priorizada antes dos módulos profundos; **CRM, Vendas, Estoque, Qualidade** renumerados para **9–12**. `docs/SPEC.md` §6 e `docs/PROMPT.md` alinhados.
 

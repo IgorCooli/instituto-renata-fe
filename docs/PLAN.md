@@ -201,7 +201,7 @@ Marketing divide-se em **dois entregáveis** no spec (§4.2): **área logada** (
 
 **Entregas parciais (tela inicial):**
 
-- [x] **Vendas** — `/app/vendas` **Transações** (`VendasTransacoesPage.tsx`, `mocks/vendas.ts`); `/app/vendas/leads` **Leads** (KPIs, filtros, tabela mock, CSV/+Lead em placeholder); `VendasLeadsPage.tsx`, `mocks/vendas-leads.ts`.
+- [x] **Vendas** — `/app/vendas` **Transações** (`VendasTransacoesPage.tsx`, `mocks/vendas.ts`); `/app/vendas/leads` **Leads** (`VendasLeadsPage.tsx`, `mocks/vendas-leads.ts`); `/app/vendas/pipeline` **Pipeline** Kanban (`VendasPipelinePage.tsx`, `mocks/vendas-pipeline.ts`, `PipelineDealCard.tsx`); `/app/vendas/vendedores` **Vendedores** (`VendasVendedoresPage.tsx`, `mocks/vendas-vendedores.ts`); `/app/vendas/produtos-precificacao` **Produtos & Precificação** (`VendasProdutosPrecificacaoPage.tsx`, `mocks/vendas-produtos-precificacao.ts`). Estilos: `vendas-page.css`, `vendas-leads-page.css`, `vendas-pipeline-page.css`, `vendas-vendedores-page.css`, `vendas-produtos-precificacao-page.css`.
 
 **Fora do âmbito desta fase:** CRUD completo, filtros avançados, integração HTTP — isso entra nas **Fases 9–11** e na **Fase 12** (qualidade/API).
 
@@ -314,3 +314,4 @@ Ao receber novas informações de produto ou prioridade:
 | 2026-04-19 | Nova **Fase 8** — **telas iniciais** (referência visual / prints), priorizada antes dos módulos profundos; **CRM / Vendas / Estoque / Qualidade** renumerados para **9–12**; diagrama mermaid atualizado. |
 | 2026-04-19 | Fase 8: entrega **Vendas / Transações** (`/app/vendas`); secção *Entregas parciais* no plano. |
 | 2026-04-19 | Fase 8: **Vendas / Leads** (`/app/vendas/leads`); rotas aninhadas sob `vendas`; sidebar Leads ativa. |
+| 2026-04-19 | Fase 8: **Vendas** — Pipeline (`/app/vendas/pipeline`), Vendedores (`/app/vendas/vendedores`), Produtos & Precificação (`/app/vendas/produtos-precificacao`); *Entregas parciais*; `CONTEXT`/`PROMPT` atualizados. |

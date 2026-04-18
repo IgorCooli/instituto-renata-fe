@@ -48,6 +48,9 @@
 | `/app/crm` | `AppFeatureShell` | **Stub** |
 | `/app/vendas` | `AppFeatureShell` | **Transações** (`VendasTransacoesPage`, index) |
 | `/app/vendas/leads` | `AppFeatureShell` | **Leads** (`VendasLeadsPage`) |
+| `/app/vendas/pipeline` | `AppFeatureShell` | **Pipeline** Kanban (`VendasPipelinePage`) |
+| `/app/vendas/vendedores` | `AppFeatureShell` | **Vendedores** (`VendasVendedoresPage`) |
+| `/app/vendas/produtos-precificacao` | `AppFeatureShell` | **Produtos & Precificação** (`VendasProdutosPrecificacaoPage`) |
 | `/app/estoque` | `AppFeatureShell` | **Stub** |
 
 **Ficheiros:** `src/app/AppRoutes.tsx` (árvore), `src/app/routeMeta.ts` (`APP_CHILD_ROUTES`), `src/app/featureSidebar.ts` (labels + `pathSuffix` + `soon`).
@@ -61,15 +64,16 @@
 | `src/app/` | Router, auth, access, tema, `routeMeta`, `featureSidebar` |
 | `src/components/ui/` | Primitivos (AppButton, ThemeToggle, …) |
 | `src/components/layout/` | `AppShell`, `AppFeatureShell`, `PageContainer`, … |
-| `src/pages/app/` | Telas logadas; vendas: `VendasTransacoesPage`, `VendasLeadsPage` |
-| `src/mocks/` | Dados fictícios (`marketing.ts`, `vendas.ts`, `vendas-leads.ts`, `index.ts`) |
-| `src/styles/` | `theme.css`, `app-feature-shell.css`, `marketing-page.css`, `vendas-page.css`, `vendas-leads-page.css` |
+| `src/pages/app/` | Telas logadas; vendas: `VendasTransacoesPage`, `VendasLeadsPage`, `VendasPipelinePage`, `VendasVendedoresPage`, `VendasProdutosPrecificacaoPage` |
+| `src/mocks/` | Dados fictícios (`marketing.ts`, `vendas.ts`, `vendas-leads.ts`, `vendas-pipeline.ts`, `vendas-vendedores.ts`, `vendas-produtos-precificacao.ts`, …) |
+| `src/styles/` | `theme.css`, `app-feature-shell.css`, `marketing-page.css`, `vendas-page.css`, `vendas-leads-page.css`, `vendas-pipeline-page.css`, `vendas-vendedores-page.css`, `vendas-produtos-precificacao-page.css` |
+| `src/components/vendas/` | Componentes do módulo (ex.: `PipelineDealCard`, `LeadStageDropdown`) |
 
 ---
 
 ## Estado das telas (Fase 8 em curso)
 
-- **Feito:** dashboard `/app`, marketing interno, **vendas** Transações + Leads (rotas aninhadas sob `vendas`).
+- **Feito:** dashboard `/app`, marketing interno, **vendas** — Transações, Leads, Pipeline (Kanban), Vendedores, Produtos & Precificação (rotas aninhadas sob `vendas`; ver `AppRoutes.tsx`). Na sidebar de Vendas ainda **Em breve:** Atividades, Orçamentos, Etiquetas, Playbook.
 - **Stub:** CRM, Estoque.
 - **Pendente (plan):** marketing público 7.2; telas iniciais CRM/Estoque; depois fases 9–11 (módulos profundos); fase 12 (qualidade + camada API).
 
@@ -109,4 +113,4 @@ npm run lint
 
 Alinhar esta data ao último commit relevante de contexto ou à edição manual de `PROMPT.md`.
 
-*Última revisão deste resumo: 2026-04-19.*
+*Última revisão deste resumo: 2026-04-17.*
