@@ -16,6 +16,7 @@ O formato segue a ideia de [Keep a Changelog](https://keepachangelog.com/pt-BR/1
 
 ### Changed
 
+- **Desenvolvimento:** `vite.config.ts` — `server.host` e `server.allowedHosts` para permitir abrir o dev server pelo hostname (ex.: **Tailscale MagicDNS** `*.ts.net` no telemóvel).
 - **`AppFeatureShell`:** sidebar de módulos **recolhível** — botão na topbar (abrir/recolher), em **mobile** painel sobreposto com backdrop ao abrir, botão circular no canto inferior esquerdo quando o menu está fechado, fecho ao navegar; em **desktop** (`≥ md`) a barra lateral anima para largura zero. Altura da sidebar **limitada à viewport** (`100vh` / `100dvh`), sem acompanhar páginas com conteúdo muito alto; links com scroll interno. Hook `src/hooks/useMediaQuery.ts`; estilos em `app-feature-shell.css`.
 - **Documentação:** `docs/CONTEXT.md`, `docs/PROMPT.md`, `docs/PLAN.md` e `docs/SPEC.md` §4.4 — alinhados às rotas e telas do módulo **Vendas** (Pipeline, Vendedores, Produtos & Precificação) e ao estado da Fase 8.
 - **Documentação:** `docs/SPEC.md` §3.2 — **Clean Architecture** (diagrama Uncle Bob, legenda, mapeamento no frontend); removidas referências a **linguagem ou stack concretas** do backend no FE; `docs/assets/clean-architecture-uncle-bob.png`; README e PROMPT atualizados.
