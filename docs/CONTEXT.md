@@ -63,7 +63,8 @@
 |------------------|----------|
 | `src/app/` | Router, auth, access, tema, `routeMeta`, `featureSidebar` |
 | `src/components/ui/` | Primitivos (AppButton, ThemeToggle, …) |
-| `src/components/layout/` | `AppShell`, `AppFeatureShell`, `PageContainer`, … |
+| `src/components/layout/` | `AppShell`, `AppFeatureShell` (sidebar recolhível + topbar), `PageContainer`, … |
+| `src/hooks/` | Hooks partilhados (ex.: `useMediaQuery`) |
 | `src/pages/app/` | Telas logadas; vendas: `VendasTransacoesPage`, `VendasLeadsPage`, `VendasPipelinePage`, `VendasVendedoresPage`, `VendasProdutosPrecificacaoPage` |
 | `src/mocks/` | Dados fictícios (`marketing.ts`, `vendas.ts`, `vendas-leads.ts`, `vendas-pipeline.ts`, `vendas-vendedores.ts`, `vendas-produtos-precificacao.ts`, …) |
 | `src/styles/` | `theme.css`, `app-feature-shell.css`, `marketing-page.css`, `vendas-page.css`, `vendas-leads-page.css`, `vendas-pipeline-page.css`, `vendas-vendedores-page.css`, `vendas-produtos-precificacao-page.css` |

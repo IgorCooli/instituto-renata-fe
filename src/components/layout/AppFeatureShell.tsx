@@ -1,5 +1,6 @@
 import Badge from 'react-bootstrap/Badge'
 import Nav from 'react-bootstrap/Nav'
+import { useEffect, useState } from 'react'
 import {
   Link,
   Navigate,
@@ -13,8 +14,11 @@ import type { FeatureId } from '../../app/access/types'
 import { APP_CHILD_ROUTES } from '../../app/routeMeta'
 import { useAuth } from '../../app/auth/useAuth'
 import type { UserRole } from '../../app/access/types'
+import { useMediaQuery } from '../../hooks/useMediaQuery'
 import { ThemeToggle } from '../ui/ThemeToggle'
 import '../../styles/app-feature-shell.css'
+
+const MQ_MOBILE = '(max-width: 767.98px)'
 
 function roleLabel(role: UserRole): string {
   return role === 'admin' ? 'Administrador' : 'Colaborador'
@@ -51,6 +55,18 @@ export function AppFeatureShell() {
   const { pathname } = useLocation()
   const { session, logout } = useAuth()
   const navigate = useNavigate()
+  const isMobile = useMediaQuery(MQ_MOBILE)
+  const [sidebarOpen, setSidebarOpen] = useState(() =>
+    typeof window !== 'undefined' ? !window.matchMedia(MQ_MOBILE).matches : true,
+  )
+
+  useEffect(() => {
+    setSidebarOpen(!isMobile)
+  }, [isMobile])
+
+  useEffect(() => {
+    if (isMobile) setSidebarOpen(false)
+  }, [pathname, isMobile])
 
   const feature = featureFromPathname(pathname)
   if (!feature) {
@@ -68,9 +84,38 @@ export function AppFeatureShell() {
     navigate('/login', { replace: true })
   }
 
+  function toggleSidebar() {
+    setSidebarOpen((o) => !o)
+  }
+
+  const sidebarClass = [
+    'app-feature-sidebar',
+    'border-end',
+    'bg-body-secondary',
+    'd-flex',
+    'flex-column',
+    sidebarOpen ? 'is-open' : '',
+  ]
+    .filter(Boolean)
+    .join(' ')
+
   return (
     <div className="app-feature-shell d-flex bg-body">
-      <aside className="app-feature-sidebar border-end bg-body-secondary d-flex flex-column">
+      {isMobile && sidebarOpen ? (
+        <button
+          type="button"
+          className="app-feature-sidebar-backdrop"
+          aria-label="Fechar menu"
+          onClick={() => setSidebarOpen(false)}
+        />
+      ) : null}
+
+      <aside
+        id="app-feature-sidebar"
+        className={sidebarClass}
+        aria-hidden={!sidebarOpen}
+        inert={!sidebarOpen}
+      >
         <div className="p-3 border-bottom border-secondary-subtle">
           <div className="fw-semibold">{nav.title}</div>
           <div className="small text-secondary">{nav.subtitle}</div>
@@ -103,6 +148,9 @@ export function AppFeatureShell() {
                       isActive ? 'active text-body' : 'text-body-secondary',
                     ].join(' ')
                   }
+                  onClick={() => {
+                    if (isMobile) setSidebarOpen(false)
+                  }}
                 >
                   {item.label}
                 </NavLink>
@@ -136,8 +184,43 @@ export function AppFeatureShell() {
         </div>
       </aside>
 
+      {!sidebarOpen && isMobile ? (
+        <button
+          type="button"
+          className="app-feature-sidebar-corner-btn btn btn-primary rounded-circle shadow"
+          onClick={() => setSidebarOpen(true)}
+          aria-label="Abrir menu de navegação"
+          title="Menu"
+        >
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden>
+            <path d="M4 6h16v2H4V6zm0 5h16v2H4v-2zm0 5h16v2H4v-2z" />
+          </svg>
+        </button>
+      ) : null}
+
       <div className="d-flex flex-column flex-grow-1 min-vh-100 min-w-0">
         <header className="app-feature-topbar border-bottom bg-body d-flex align-items-center gap-2 px-2 px-sm-3 shadow-sm">
+          <button
+            type="button"
+            className="btn btn-sm btn-outline-secondary d-inline-flex align-items-center justify-content-center"
+            onClick={toggleSidebar}
+            aria-expanded={sidebarOpen}
+            aria-controls="app-feature-sidebar"
+            title={sidebarOpen ? 'Recolher menu' : 'Abrir menu'}
+          >
+            {sidebarOpen ? (
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden>
+                <path d="M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6 6 6 1.41-1.41z" />
+              </svg>
+            ) : (
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden>
+                <path d="M4 6h16v2H4V6zm0 5h16v2H4v-2zm0 5h16v2H4v-2z" />
+              </svg>
+            )}
+            <span className="visually-hidden">
+              {sidebarOpen ? 'Recolher menu lateral' : 'Abrir menu lateral'}
+            </span>
+          </button>
           <Link
             to="/app"
             className="btn btn-sm btn-outline-secondary d-inline-flex align-items-center gap-1"

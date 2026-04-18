@@ -1,13 +1,14 @@
 /**
  * Layout de módulos (/app/marketing, …): sidebar + topbar.
  * Alinhado a tema claro/escuro via Bootstrap / theme.css.
+ * Sidebar recolhível: mobile (painel sobreposto + backdrop), desktop (largura 0).
  */
+
 .app-feature-shell {
   min-height: 100vh;
 }
 
 .app-feature-sidebar {
-  width: min(280px, 92vw);
   flex-shrink: 0;
 }
 
@@ -22,4 +23,75 @@
 .app-feature-sidebar .nav-link.active {
   background-color: var(--bs-secondary-bg);
   font-weight: 600;
+}
+
+/* Backdrop — apenas quando o painel está aberto em mobile (controlado no TS) */
+.app-feature-sidebar-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 1035;
+  margin: 0;
+  padding: 0;
+  border: none;
+  background: rgba(0, 0, 0, 0.45);
+  cursor: pointer;
+  appearance: none;
+}
+
+/* Botão flutuante — menu recolhido no canto (mobile) */
+.app-feature-sidebar-corner-btn {
+  position: fixed;
+  left: max(0.75rem, env(safe-area-inset-left));
+  bottom: max(0.75rem, env(safe-area-inset-bottom));
+  z-index: 1030;
+  width: 3rem;
+  height: 3rem;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (max-width: 767.98px) {
+  .app-feature-shell {
+    position: relative;
+  }
+
+  .app-feature-sidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    z-index: 1040;
+    width: min(280px, 88vw);
+    transform: translateX(-100%);
+    transition: transform 0.2s ease;
+    box-shadow: none;
+  }
+
+  .app-feature-sidebar.is-open {
+    transform: translateX(0);
+    box-shadow: 0 0 1.5rem rgba(0, 0, 0, 0.2);
+  }
+}
+
+@media (min-width: 768px) {
+  .app-feature-sidebar {
+    width: 0;
+    min-width: 0;
+    max-width: none;
+    overflow: hidden;
+    border-right-width: 0 !important;
+    transition:
+      width 0.2s ease,
+      min-width 0.2s ease;
+  }
+
+  .app-feature-sidebar.is-open {
+    width: min(280px, 92vw);
+    min-width: 240px;
+    max-width: 280px;
+    overflow: visible;
+    border-right-width: 1px !important;
+  }
 }
