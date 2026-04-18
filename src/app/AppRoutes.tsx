@@ -7,6 +7,7 @@ import { MarketingPage } from '../pages/app/MarketingPage'
 import { VendasLeadsPage } from '../pages/app/VendasLeadsPage'
 import { VendasPipelinePage } from '../pages/app/VendasPipelinePage'
 import { VendasTransacoesPage } from '../pages/app/VendasTransacoesPage'
+import { VendasVendedoresPage } from '../pages/app/VendasVendedoresPage'
 import { HomePage } from '../pages/HomePage'
 import { LoginPage } from '../pages/LoginPage'
 import { RequireAccess } from './RequireAccess'
@@ -54,6 +55,7 @@ export function AppRoutes() {
             <Route index element={<VendasTransacoesPage />} />
             <Route path="leads" element={<VendasLeadsPage />} />
             <Route path="pipeline" element={<VendasPipelinePage />} />
+            <Route path="vendedores" element={<VendasVendedoresPage />} />
           </Route>
           <Route
             path="estoque"
