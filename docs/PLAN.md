@@ -198,6 +198,10 @@ Marketing divide-se em **dois entregáveis** no spec (§4.2): **área logada** (
 3. [ ] Dados sempre via mocks até integração com API (§2.1 do spec).
 4. [ ] Opcional na mesma lógica: **7.2** (landing pública) ou ajustes pontuais em telas já existentes (ex.: marketing interno), se a referência exigir.
 
+**Entregas parciais (tela inicial):**
+
+- [x] **Vendas** — rota `/app/vendas`, vista **Transações** (KPIs, mês/ano, busca, tabela mock, sidebar do módulo); `VendasPage.tsx`, `mocks/vendas.ts`.
+
 **Fora do âmbito desta fase:** CRUD completo, filtros avançados, integração HTTP — isso entra nas **Fases 9–11** e na **Fase 12** (qualidade/API).
 
 **Saída:** cada módulo em escopo tem uma **tela inicial** utilizável e alinhada à referência visual; base para evoluir nas fases seguintes.
@@ -307,3 +311,4 @@ Ao receber novas informações de produto ou prioridade:
 | 2026-04-18 | **Fase 6** redefinida: **tela de início** (`/app`) com prioridade; **Marketing público**→**7**; CRM→**8**; Vendas→**9**; Estoque→**10**; Qualidade→**11**; diagrama e tabela atualizados. |
 | 2026-04-19 | **Fase 7** dividida em **7.1** (marketing interno em `/app/marketing`, entregue) e **7.2** (site público, pendente); tabela “Ordem resumida” atualizada. |
 | 2026-04-19 | Nova **Fase 8** — **telas iniciais** (referência visual / prints), priorizada antes dos módulos profundos; **CRM / Vendas / Estoque / Qualidade** renumerados para **9–12**; diagrama mermaid atualizado. |
+| 2026-04-19 | Fase 8: entrega **Vendas / Transações** (`/app/vendas`); secção *Entregas parciais* no plano. |

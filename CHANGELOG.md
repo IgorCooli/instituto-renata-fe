@@ -6,6 +6,10 @@ O formato segue a ideia de [Keep a Changelog](https://keepachangelog.com/pt-BR/1
 
 ## [Unreleased]
 
+### Added
+
+- **Vendas (`/app/vendas`) — Transações (Fase 8):** KPIs (faturamento, quantidade, ticket médio), seletor de mês/ano com navegação, busca na tabela, lista mock de transações com estratégia (badges), pagamento e avatar de cliente; botão **Nova Venda** e FAB de suporte em placeholder. Dados em `src/mocks/vendas.ts`; estilos em `src/styles/vendas-page.css`. Sidebar do módulo com itens alinhados ao produto (demais rotas “Em breve”).
+
 ### Changed
 
 - **Documentação:** `docs/PLAN.md` — nova **Fase 8** (telas iniciais dos módulos com referência visual / prints), priorizada antes dos módulos profundos; **CRM, Vendas, Estoque, Qualidade** renumerados para **9–12**. `docs/SPEC.md` §6 e `docs/PROMPT.md` alinhados.

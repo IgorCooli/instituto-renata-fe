@@ -57,16 +57,16 @@ Antes de editar código, confirma:
 | 6 | Tela de início `/app` (dashboard, cartões dos módulos, onboarding, complementos genéricos) | Feito |
 | 7.1 | Marketing interno `/app/marketing` (metas, campanhas mock, tabela + busca) | Feito |
 | 7.2 | Marketing público (landing institucional, rota pública) | Pendente — ver `docs/PLAN.md` §7.2 |
-| 8 | **Telas iniciais** dos módulos (prints / referência visual): CRM, Vendas, Estoque, etc. | **Em curso** — prioridade; ver **`docs/PLAN.md`** (secção **Fase 8**) |
+| 8 | **Telas iniciais** (prints / referência visual) | **Em curso** — **Vendas / Transações** (`/app/vendas`) entregue; CRM e Estoque pendentes; ver **`docs/PLAN.md`** (Fase 8) |
 | 9–11 | CRM / Vendas / Estoque **profundos** (CRUD, listas, fluxos) | Planeado após Fase 8 |
 | 12 | Qualidade + preparação para API | Planeado |
 | 0 | Documentação contínua (SPEC/PLAN/README/changelog) | **Contínuo** — ver checklists no `docs/PLAN.md` |
 
-**Rotas úteis:** `/` (home pública), `/login`, `/app` (dashboard), `/app/marketing`, `/app/crm`, `/app/vendas`, `/app/estoque` (stub ou em evolução conforme PLAN).
+**Rotas úteis:** `/` (home pública), `/login`, `/app` (dashboard), `/app/marketing`, `/app/crm` (stub), **`/app/vendas`** (Transações — tela inicial Fase 8), `/app/estoque` (stub ou em evolução conforme PLAN).
 
 **Layout área logada:** o **início** (`/app` index) **não** tem navbar superior nem lateral — apenas **`ThemeToggleScreenCorner`** e o conteúdo do dashboard. As **telas de módulo** (`/app/marketing`, etc.) usam **`AppFeatureShell`**: sidebar lateral (título do módulo, links configuráveis em `featureSidebar.ts`, itens “Em breve” desativados), barra superior fina com **← Voltar** para `/app`, **tema** e avatar; rodapé da sidebar com perfil e **Sair**.
 
-**Ficheiros-chave:** `src/app/AppRoutes.tsx`, `src/app/routeMeta.ts`, `src/app/featureSidebar.ts`, `src/app/auth/`, `src/app/access/`, `src/app/theme/`, `src/components/layout/AppShell.tsx`, `src/components/layout/AppFeatureShell.tsx`, `src/styles/app-feature-shell.css`, `src/pages/app/AppDashboardPage.tsx`, `src/pages/app/MarketingPage.tsx`, `src/mocks/marketing.ts`, `src/styles/marketing-page.css`.
+**Ficheiros-chave:** `src/app/AppRoutes.tsx`, `src/app/routeMeta.ts`, `src/app/featureSidebar.ts`, `src/app/auth/`, `src/app/access/`, `src/app/theme/`, `src/components/layout/AppShell.tsx`, `src/components/layout/AppFeatureShell.tsx`, `src/styles/app-feature-shell.css`, `src/pages/app/AppDashboardPage.tsx`, `src/pages/app/MarketingPage.tsx`, `src/mocks/marketing.ts`, `src/styles/marketing-page.css`, `src/pages/app/VendasPage.tsx`, `src/mocks/vendas.ts`, `src/styles/vendas-page.css`.
 
 **Contrato alinhado ao backend (quando integrar):** o FE deve continuar a poder representar `AuthSession` como hoje; detalhes em **`instituto-renata-be/docs/SPEC.md`** §6. Até lá, **`src/app/auth/mockLogin.ts`** simula login.
 
@@ -78,7 +78,7 @@ Antes de editar código, confirma:
 
 Pelo **`docs/PLAN.md`**:
 
-- **Fase 8 — Telas iniciais dos módulos:** implementar a **primeira tela** de cada rota em uso (ex.: `/app/crm`, `/app/vendas`, `/app/estoque`), **print a print** ou referência visual; mocks; responsivo e tema. **7.2** (marketing público) pode entrar aqui ou em paralelo, conforme prioridade.
+- **Fase 8 — Telas iniciais dos módulos:** **`/app/vendas`** (Transações) feito; seguir com **`/app/crm`**, **`/app/estoque`**, etc., **print a print**; **7.2** (marketing público) pode entrar aqui ou em paralelo.
 - **Fase 7.2 — Marketing (público):** landing/site institucional (se não for tratada dentro da Fase 8).
 - Depois **Fases 9–11:** CRM, Vendas, Estoque com dados mock **ricos** (listas completas, CRUD, fluxos).
 - **Fase 12:** qualidade e preparação para API (camada `services` trocável por HTTP).
@@ -117,4 +117,4 @@ npm run lint
 
 ---
 
-*Última atualização deste guia: 2026-04-19 — Nova **Fase 8** (telas iniciais por módulo); CRM/Vendas/Estoque/Qualidade renumerados para **9–12**; prioridade atual = prints/referências.*
+*Última atualização deste guia: 2026-04-19 — Fase 8: tela **Vendas / Transações** entregue; próximas telas iniciais (CRM, Estoque, …) conforme prints.*
