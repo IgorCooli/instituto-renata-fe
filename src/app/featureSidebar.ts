@@ -32,7 +32,7 @@ const LINKS: Record<FeatureId, FeatureSidebarLink[]> = {
     { label: 'Pipeline', pathSuffix: 'pipeline' },
     { label: 'Atividades', pathSuffix: 'atividades', soon: true },
     { label: 'Vendedores', pathSuffix: 'vendedores' },
-    { label: 'Produtos & Precificação', pathSuffix: 'produtos-precificacao', soon: true },
+    { label: 'Produtos & Precificação', pathSuffix: 'produtos-precificacao' },
     { label: 'Orçamentos', pathSuffix: 'orcamentos', soon: true },
     { label: 'Etiquetas', pathSuffix: 'etiquetas', soon: true },
     { label: 'Playbook', pathSuffix: 'playbook', soon: true },

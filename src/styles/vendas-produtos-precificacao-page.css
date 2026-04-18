@@ -1,0 +1,183 @@
+/**
+ * Vendas — Produtos & Precificação (`/app/vendas/produtos-precificacao`).
+ */
+
+.ir-vendas-produtos-page .ir-produtos-tabs {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
+}
+
+.ir-vendas-produtos-page .ir-produtos-tabs .btn {
+  font-weight: 600;
+}
+
+.ir-vendas-produtos-page .ir-produtos-tabs .btn.active {
+  background: var(--bs-secondary-bg);
+  border-color: var(--bs-border-color);
+  color: var(--bs-body-color);
+}
+
+.ir-vendas-produtos-page .ir-produtos-kpi {
+  border-radius: 0.75rem;
+  border: 1px solid var(--bs-border-color);
+  padding: 1rem 1.125rem;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.ir-vendas-produtos-page .ir-produtos-kpi__icon {
+  flex-shrink: 0;
+  opacity: 0.95;
+}
+
+.ir-vendas-produtos-page .ir-produtos-kpi__value {
+  font-size: 1.35rem;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+
+.ir-vendas-produtos-page .ir-produtos-kpi__label {
+  font-size: 0.8rem;
+  color: var(--bs-secondary-color);
+  margin-top: 0.2rem;
+}
+
+.ir-vendas-produtos-page .ir-produtos-kpi--total {
+  background: rgba(88, 166, 255, 0.08);
+  border-left: 4px solid #58a6ff;
+}
+
+.ir-vendas-produtos-page .ir-produtos-kpi--total .ir-produtos-kpi__icon {
+  color: #58a6ff;
+}
+
+.ir-vendas-produtos-page .ir-produtos-kpi--total .ir-produtos-kpi__value {
+  color: #58a6ff;
+}
+
+html[data-bs-theme='light'] .ir-vendas-produtos-page .ir-produtos-kpi--total .ir-produtos-kpi__value {
+  color: #0969da;
+}
+
+.ir-vendas-produtos-page .ir-produtos-kpi--ativos {
+  background: rgba(46, 160, 67, 0.1);
+  border-left: 4px solid #3fb950;
+}
+
+.ir-vendas-produtos-page .ir-produtos-kpi--ativos .ir-produtos-kpi__icon {
+  color: #3fb950;
+}
+
+.ir-vendas-produtos-page .ir-produtos-kpi--ativos .ir-produtos-kpi__value {
+  color: #3fb950;
+}
+
+.ir-vendas-produtos-page .ir-produtos-kpi--servicos {
+  background: rgba(163, 113, 247, 0.1);
+  border-left: 4px solid #a371f7;
+}
+
+.ir-vendas-produtos-page .ir-produtos-kpi--servicos .ir-produtos-kpi__icon {
+  color: #a371f7;
+}
+
+.ir-vendas-produtos-page .ir-produtos-kpi--servicos .ir-produtos-kpi__value {
+  color: #a371f7;
+}
+
+.ir-vendas-produtos-page .ir-produtos-kpi--preco {
+  background: rgba(196, 165, 116, 0.12);
+  border-left: 4px solid var(--ir-vendas-gold);
+}
+
+.ir-vendas-produtos-page .ir-produtos-kpi--preco .ir-produtos-kpi__icon {
+  color: var(--ir-vendas-gold);
+}
+
+.ir-vendas-produtos-page .ir-produtos-kpi--preco .ir-produtos-kpi__value {
+  color: var(--ir-vendas-gold);
+}
+
+.ir-vendas-produtos-page .ir-prod-subbadge {
+  display: inline-block;
+  font-size: 0.65rem;
+  font-weight: 600;
+  padding: 0.15em 0.5em;
+  border-radius: 999px;
+  border: 1px solid currentColor;
+  margin-top: 0.25rem;
+}
+
+.ir-vendas-produtos-page .ir-prod-subbadge--purple {
+  color: #a371f7;
+  border-color: rgba(163, 113, 247, 0.6);
+  background: rgba(163, 113, 247, 0.08);
+}
+
+.ir-vendas-produtos-page .ir-prod-subbadge--green {
+  color: #3fb950;
+  border-color: rgba(63, 185, 80, 0.55);
+  background: rgba(63, 185, 80, 0.08);
+}
+
+.ir-vendas-produtos-page .ir-prod-preco {
+  color: #3fb950;
+  font-weight: 600;
+}
+
+html[data-bs-theme='light'] .ir-vendas-produtos-page .ir-prod-preco {
+  color: #1a7f37;
+}
+
+.ir-vendas-produtos-page .ir-prod-tipo-badge {
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.25em 0.6em;
+  border-radius: 999px;
+  background: rgba(196, 165, 116, 0.28);
+  color: var(--ir-vendas-gold);
+}
+
+.ir-vendas-produtos-page .ir-prod-tipo-meta {
+  font-size: 0.7rem;
+  color: var(--bs-secondary-color);
+  margin-top: 0.25rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.ir-vendas-produtos-page .ir-produto-status-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 5rem;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  padding: 0.4em 0.85em;
+  border-radius: 999px;
+  background: linear-gradient(
+    180deg,
+    rgba(212, 181, 130, 0.95) 0%,
+    rgba(196, 165, 116, 0.88) 100%
+  );
+  color: #1a1d21;
+}
+
+html[data-bs-theme='light'] .ir-vendas-produtos-page .ir-produto-status-pill {
+  color: #212529;
+}
+
+.ir-vendas-produtos-page .ir-prod-precificacao-placeholder {
+  border-radius: 0.75rem;
+  border: 1px dashed var(--bs-border-color);
+  padding: 2.5rem 1.5rem;
+  text-align: center;
+  color: var(--bs-secondary-color);
+}
