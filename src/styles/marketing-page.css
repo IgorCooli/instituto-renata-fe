@@ -1,0 +1,33 @@
+/**
+ * Módulo Marketing (/app/marketing) — cartão de meta anual e tabela de campanhas.
+ */
+.ir-marketing-year-card {
+  border-radius: 0.75rem;
+}
+
+.ir-marketing-month-strip {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 2px;
+  height: 0.5rem;
+}
+
+.ir-marketing-month-strip__cell {
+  border-radius: 2px;
+  background-color: var(--bs-secondary-bg);
+}
+
+.ir-marketing-month-strip__cell--fill {
+  background-color: var(--bs-primary);
+  opacity: 0.85;
+}
+
+.ir-marketing-table-actions {
+  white-space: nowrap;
+}
+
+@media (max-width: 767.98px) {
+  .ir-marketing-table-wrap {
+    font-size: 0.8125rem;
+  }
+}

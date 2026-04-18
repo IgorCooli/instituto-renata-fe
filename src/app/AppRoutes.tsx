@@ -1,5 +1,5 @@
 import { Route, Routes } from 'react-router-dom'
-import { AppShell } from '../components/layout'
+import { AppFeatureShell, AppShell } from '../components/layout'
 import { AppDashboardPage } from '../pages/app/AppDashboardPage'
 import { CrmPage } from '../pages/app/CrmPage'
 import { EstoquePage } from '../pages/app/EstoquePage'
@@ -24,38 +24,40 @@ export function AppRoutes() {
         }
       >
         <Route index element={<AppDashboardPage />} />
-        <Route
-          path="marketing"
-          element={
-            <RequireAccess feature="marketing">
-              <MarketingPage />
-            </RequireAccess>
-          }
-        />
-        <Route
-          path="crm"
-          element={
-            <RequireAccess feature="crm">
-              <CrmPage />
-            </RequireAccess>
-          }
-        />
-        <Route
-          path="vendas"
-          element={
-            <RequireAccess feature="vendas">
-              <VendasPage />
-            </RequireAccess>
-          }
-        />
-        <Route
-          path="estoque"
-          element={
-            <RequireAccess feature="estoque">
-              <EstoquePage />
-            </RequireAccess>
-          }
-        />
+        <Route element={<AppFeatureShell />}>
+          <Route
+            path="marketing"
+            element={
+              <RequireAccess feature="marketing">
+                <MarketingPage />
+              </RequireAccess>
+            }
+          />
+          <Route
+            path="crm"
+            element={
+              <RequireAccess feature="crm">
+                <CrmPage />
+              </RequireAccess>
+            }
+          />
+          <Route
+            path="vendas"
+            element={
+              <RequireAccess feature="vendas">
+                <VendasPage />
+              </RequireAccess>
+            }
+          />
+          <Route
+            path="estoque"
+            element={
+              <RequireAccess feature="estoque">
+                <EstoquePage />
+              </RequireAccess>
+            }
+          />
+        </Route>
       </Route>
     </Routes>
   )

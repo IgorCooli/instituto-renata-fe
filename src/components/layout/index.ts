@@ -1,3 +1,4 @@
+export { AppFeatureShell } from './AppFeatureShell'
 export { AppShell } from './AppShell'
 export { EmptyState } from './EmptyState'
 export type { EmptyStateProps } from './EmptyState'

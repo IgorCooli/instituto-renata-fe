@@ -1,6 +1,6 @@
 # Plano de implementação (frontend)
 
-Plano **incremental**: cada fase entrega valor testável. **Nesta etapa do projeto, toda tela usa dados mockados** (ver `SPEC.md` §2.1); integração com o backend (`be`, repositório irmão) virá depois. **Todas as telas devem ser responsivas** — clientes acessam pelo celular (`SPEC.md` §6). Ordem sugerida considera dependências (tema e shell antes das features) e uso de **npm** como gerenciador de pacotes.
+Plano **incremental**: cada fase entrega valor testável. **Nesta etapa do projeto, toda tela usa dados mockados** (ver `SPEC.md` §2.1); integração com o backend (`be`, repositório irmão) virá depois. **Todas as telas devem ser responsivas** — clientes acessam pelo celular (`SPEC.md` §6). Ordem sugerida considera dependências (tema e shell antes das features) e uso de **npm** como gerenciador de pacotes. **Prioridade atual:** depois do dashboard (`/app`) e do marketing interno, **telas iniciais** de cada módulo com referência visual (**Fase 8**) vêm **antes** do CRM/Vendas/Estoque **profundos** (Fases 9–11).
 
 ## Visão das fases por parte do projeto
 
@@ -22,18 +22,20 @@ flowchart LR
   subgraph features [Features]
     H[Início /app]
     M[Marketing]
-    C[CRM]
-    V[Vendas]
-    E[Estoque]
+    I[Telas iniciais módulos]
+    C[CRM profundo]
+    V[Vendas profundo]
+    E[Estoque profundo]
   end
   foundation --> shell
   shell --> A
   A --> T
   T --> H
   H --> M
-  H --> C
-  H --> V
-  H --> E
+  H --> I
+  I --> C
+  I --> V
+  I --> E
 ```
 
 *(Mermaid é opcional no visualizador; o texto abaixo é a fonte de verdade.)*
@@ -152,21 +154,59 @@ flowchart LR
 
 ---
 
-## Fase 7 — Feature: Marketing (público)
+## Fase 7 — Feature: Marketing
 
-**Objetivo:** páginas públicas conforme spec §4.2.
+Marketing divide-se em **dois entregáveis** no spec (§4.2): **área logada** (campanhas/metas) e **site público** (landing). Podem avançar em paralelo no código; aqui a ordem reflete o que já existe na rota `/app/marketing`.
+
+### 7.1 Área logada — campanhas e metas (`/app/marketing`)
+
+**Objetivo:** tela interna de marketing com dados mock, alinhada ao pacote `marketing` e guardas existentes.
 
 **Passos:**
 
-1. Layout marketing (sem menu administrativo ou com header simplificado).
-2. Landing com seções genéricas (serviços, contato); dados estáticos ou JSON local.
-3. Rota pública clara (ex.: `/` dedicado ao site, ou `/site`, conforme decisão — hoje `/` pode ser home técnica; alinhar com o spec).
+1. [x] Meta anual e visão mensal (Jan–Dez): real vs projetado vs meta; barra de progresso.
+2. [x] Lista/tabela de campanhas com busca client-side; colunas de estratégia, leads, meta/realizado, progresso.
+3. [x] Ações de linha e “Nova campanha” como placeholders desativados até haver API.
+4. [x] Layout responsivo e estilos dedicados (`marketing-page.css`).
+
+**Saída:** utilizador autenticado com feature `marketing` acede a `/app/marketing` e vê metas e campanhas mock.
+
+### 7.2 Site público (institucional)
+
+**Objetivo:** páginas públicas conforme spec §4.2 (sem login).
+
+**Passos:**
+
+1. [ ] Layout marketing (sem menu administrativo ou com header simplificado).
+2. [ ] Landing com seções genéricas (serviços, contato); dados estáticos ou JSON local.
+3. [ ] Rota pública clara (ex.: `/` dedicado ao site, ou `/site`, conforme decisão — hoje `/` pode ser home técnica; alinhar com o spec).
 
 **Saída:** visitante vê marketing sem autenticação.
 
 ---
 
-## Fase 8 — Feature: CRM
+## Fase 8 — Telas iniciais dos módulos (referência visual / prints)
+
+**Objetivo:** para cada rota de módulo já registada (ex.: `/app/crm`, `/app/vendas`, `/app/estoque` em `APP_CHILD_ROUTES` / `routeMeta.ts`), entregar a **primeira tela** com layout, hierarquia visual e dados **mock**, alinhada a **prints ou referências** enviadas pelo produto — trabalho **print a print** até cobrir o escopo acordado.
+
+**Contexto:** esta fase foi **priorizada** em relação ao desenvolvimento **profundo** de CRM, Vendas e Estoque (listas completas, CRUD, fluxos longos), que ficam nas **Fases 9–11**. O **7.2** (site público / landing) pode seguir o **mesmo processo** (referência visual) nesta fase ou permanecer independente, conforme prioridade do time.
+
+**Passos:**
+
+1. [ ] Inventário das rotas e páginas atuais em `src/pages/app/` (substituir placeholders onde couber).
+2. [ ] **Por módulo** (ordem combinada com o produto): receber print ou referência → implementar **tela inicial** → validar **responsivo** e **tema claro/escuro** → registo no `CHANGELOG` quando a tela for aceite.
+3. [ ] Dados sempre via mocks até integração com API (§2.1 do spec).
+4. [ ] Opcional na mesma lógica: **7.2** (landing pública) ou ajustes pontuais em telas já existentes (ex.: marketing interno), se a referência exigir.
+
+**Fora do âmbito desta fase:** CRUD completo, filtros avançados, integração HTTP — isso entra nas **Fases 9–11** e na **Fase 12** (qualidade/API).
+
+**Saída:** cada módulo em escopo tem uma **tela inicial** utilizável e alinhada à referência visual; base para evoluir nas fases seguintes.
+
+---
+
+## Fase 9 — Feature: CRM (dados ricos e CRUD)
+
+**Nota:** a **tela inicial** do CRM (layout principal após abrir o módulo) deve estar endereçada na **Fase 8**; esta fase cobre **evolução** para dados ricos e fluxos completos.
 
 **Objetivo:** primeiro módulo de dados “ricos” conforme spec §4.3.
 
@@ -180,7 +220,9 @@ flowchart LR
 
 ---
 
-## Fase 9 — Feature: Vendas
+## Fase 10 — Feature: Vendas (dados ricos e fluxos)
+
+**Nota:** a **tela inicial** de Vendas fica na **Fase 8**; aqui entram orçamentos, listas e fluxos completos.
 
 **Objetivo:** orçamentos/oportunidades conforme spec §4.4.
 
@@ -194,7 +236,9 @@ flowchart LR
 
 ---
 
-## Fase 10 — Feature: Estoque
+## Fase 11 — Feature: Estoque (dados ricos e movimentações)
+
+**Nota:** a **tela inicial** de Estoque fica na **Fase 8**; aqui entram itens, histórico e ajustes completos.
 
 **Objetivo:** itens e movimentações conforme spec §4.5.
 
@@ -208,7 +252,7 @@ flowchart LR
 
 ---
 
-## Fase 11 — Qualidade e preparação para API
+## Fase 12 — Qualidade e preparação para API
 
 **Objetivo:** endurecer antes de integrar o repositório **backend** (quando existir); até lá o app permanece 100 % em mocks.
 
@@ -234,11 +278,12 @@ flowchart LR
 | 4 | Login |
 | 5 | **Tema claro / escuro (toggle global + persistência)** |
 | 6 | **Tela de início / dashboard (`/app`)** |
-| 7 | Marketing (público) |
-| 8 | CRM |
-| 9 | Vendas |
-| 10 | Estoque |
-| 11 | Qualidade + camada de API mock |
+| 7 | **Marketing** — interno (`/app/marketing`) **feito** · público (landing) **pendente** |
+| 8 | **Telas iniciais** dos módulos (prints / referência visual) — CRM, Vendas, Estoque (+ opcional 7.2) |
+| 9 | CRM — dados ricos, CRUD e fluxos completos |
+| 10 | Vendas — dados ricos e fluxos completos |
+| 11 | Estoque — dados ricos e movimentações completas |
+| 12 | Qualidade + camada de API mock |
 
 ---
 
@@ -260,3 +305,5 @@ Ao receber novas informações de produto ou prioridade:
 | 2026-04-17 | Intro (responsivo); Fase 0/2/3/9 mobile; §2.1; Processo §7; README vs changelog. |
 | 2026-04-17 | Nova **Fase 5** tema claro/escuro; Marketing→6 … Estoque→9; Qualidade→10; mermaid atualizado. |
 | 2026-04-18 | **Fase 6** redefinida: **tela de início** (`/app`) com prioridade; **Marketing público**→**7**; CRM→**8**; Vendas→**9**; Estoque→**10**; Qualidade→**11**; diagrama e tabela atualizados. |
+| 2026-04-19 | **Fase 7** dividida em **7.1** (marketing interno em `/app/marketing`, entregue) e **7.2** (site público, pendente); tabela “Ordem resumida” atualizada. |
+| 2026-04-19 | Nova **Fase 8** — **telas iniciais** (referência visual / prints), priorizada antes dos módulos profundos; **CRM / Vendas / Estoque / Qualidade** renumerados para **9–12**; diagrama mermaid atualizado. |

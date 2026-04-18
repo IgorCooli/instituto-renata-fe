@@ -18,7 +18,7 @@ O **`CHANGELOG.md`** continua a registar *o quê* mudou por versão; o **PROMPT*
 Antes de editar código, confirma:
 
 1. **Leste** este `docs/PROMPT.md` (estado + próximo passo) e a secção relevante do **`docs/PLAN.md`**.
-2. Sabes onde está o **registo de rotas e features:** `src/app/routeMeta.ts` (`APP_CHILD_ROUTES`) e `src/app/AppRoutes.tsx`.
+2. Sabes onde está o **registo de rotas e features:** `src/app/routeMeta.ts` (`APP_CHILD_ROUTES`), `src/app/featureSidebar.ts` (itens da sidebar por módulo) e `src/app/AppRoutes.tsx` (início vs `AppFeatureShell` aninhado).
 3. Sabes que **sessão mock** usa `sessionStorage` chave **`ir_auth_session`** e tipos em `src/app/auth/types.ts` (`AuthSession`: `email`, `role`, `enabledFeatures`).
 4. Sabes que **acesso por módulo** vem de `src/app/access/` (`useAccess`, `hasFeature`) e features em `src/app/access/types.ts` (`FeatureId`).
 5. **Tema** é só cliente: `localStorage` **`ir_theme`**, `ThemeProvider`, `index.html` script anti-FOUC — não depende do backend.
@@ -55,11 +55,18 @@ Antes de editar código, confirma:
 | 4 | Login (mock), `AuthProvider`, `RequireAuth` | Feito |
 | 5 | Tema claro/escuro (`ThemeProvider`, `ir_theme`, `ThemeToggle`) | Feito |
 | 6 | Tela de início `/app` (dashboard, cartões dos módulos, onboarding, complementos genéricos) | Feito |
+| 7.1 | Marketing interno `/app/marketing` (metas, campanhas mock, tabela + busca) | Feito |
+| 7.2 | Marketing público (landing institucional, rota pública) | Pendente — ver `docs/PLAN.md` §7.2 |
+| 8 | **Telas iniciais** dos módulos (prints / referência visual): CRM, Vendas, Estoque, etc. | **Em curso** — prioridade; ver **`docs/PLAN.md`** (secção **Fase 8**) |
+| 9–11 | CRM / Vendas / Estoque **profundos** (CRUD, listas, fluxos) | Planeado após Fase 8 |
+| 12 | Qualidade + preparação para API | Planeado |
 | 0 | Documentação contínua (SPEC/PLAN/README/changelog) | **Contínuo** — ver checklists no `docs/PLAN.md` |
 
 **Rotas úteis:** `/` (home pública), `/login`, `/app` (dashboard), `/app/marketing`, `/app/crm`, `/app/vendas`, `/app/estoque` (stub ou em evolução conforme PLAN).
 
-**Ficheiros-chave:** `src/app/AppRoutes.tsx`, `src/app/routeMeta.ts`, `src/app/auth/`, `src/app/access/`, `src/app/theme/`, `src/components/layout/AppShell.tsx`, `src/pages/app/AppDashboardPage.tsx`.
+**Layout área logada:** o **início** (`/app` index) **não** tem navbar superior nem lateral — apenas **`ThemeToggleScreenCorner`** e o conteúdo do dashboard. As **telas de módulo** (`/app/marketing`, etc.) usam **`AppFeatureShell`**: sidebar lateral (título do módulo, links configuráveis em `featureSidebar.ts`, itens “Em breve” desativados), barra superior fina com **← Voltar** para `/app`, **tema** e avatar; rodapé da sidebar com perfil e **Sair**.
+
+**Ficheiros-chave:** `src/app/AppRoutes.tsx`, `src/app/routeMeta.ts`, `src/app/featureSidebar.ts`, `src/app/auth/`, `src/app/access/`, `src/app/theme/`, `src/components/layout/AppShell.tsx`, `src/components/layout/AppFeatureShell.tsx`, `src/styles/app-feature-shell.css`, `src/pages/app/AppDashboardPage.tsx`, `src/pages/app/MarketingPage.tsx`, `src/mocks/marketing.ts`, `src/styles/marketing-page.css`.
 
 **Contrato alinhado ao backend (quando integrar):** o FE deve continuar a poder representar `AuthSession` como hoje; detalhes em **`instituto-renata-be/docs/SPEC.md`** §6. Até lá, **`src/app/auth/mockLogin.ts`** simula login.
 
@@ -71,9 +78,10 @@ Antes de editar código, confirma:
 
 Pelo **`docs/PLAN.md`**:
 
-- **Fase 7 — Marketing (público):** landing/site institucional, rota pública clara (hoje `/` ainda pode ser a home técnica — decidir com o spec).
-- Depois **Fase 8–10:** CRM, Vendas, Estoque com dados mock ricos (listas, formulários).
-- **Fase 11:** qualidade e preparação para API (camada `services` trocável por HTTP).
+- **Fase 8 — Telas iniciais dos módulos:** implementar a **primeira tela** de cada rota em uso (ex.: `/app/crm`, `/app/vendas`, `/app/estoque`), **print a print** ou referência visual; mocks; responsivo e tema. **7.2** (marketing público) pode entrar aqui ou em paralelo, conforme prioridade.
+- **Fase 7.2 — Marketing (público):** landing/site institucional (se não for tratada dentro da Fase 8).
+- Depois **Fases 9–11:** CRM, Vendas, Estoque com dados mock **ricos** (listas completas, CRUD, fluxos).
+- **Fase 12:** qualidade e preparação para API (camada `services` trocável por HTTP).
 
 Quando o **backend** expuser login real, substituir `mockLogin` e alinhar tipos ao contrato em `instituto-renata-be/docs/SPEC.md` §6.
 
@@ -103,9 +111,10 @@ npm run lint
 ## Ligação ao backend
 
 - Repositório irmão: clonar **`instituto-renata-be`** ao lado deste projeto (mesmo diretório pai) para trabalhar contratos; spec da API: `instituto-renata-be/docs/SPEC.md`.
+- **URL da API por ambiente:** ver **`docs/SPEC.md` §3.1** — variável **`VITE_API_BASE_URL`** (local vs produção); cliente HTTP deve usar esta base para todos os endpoints.
 - Contrato de sessão alvo: `email`, `role`, `enabledFeatures` (ver §6 do SPEC do `be`).
 - O frontend já persiste sessão mock em `sessionStorage` (`ir_auth_session`).
 
 ---
 
-*Última atualização deste guia: alinhada ao `docs/PLAN.md` e `CHANGELOG.md` na data em que foi editado no repositório.*
+*Última atualização deste guia: 2026-04-19 — Nova **Fase 8** (telas iniciais por módulo); CRM/Vendas/Estoque/Qualidade renumerados para **9–12**; prioridade atual = prints/referências.*

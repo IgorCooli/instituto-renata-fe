@@ -39,6 +39,16 @@ Sistema web para **gestão de consultório** (primeiro uso: contexto odontológi
 
 *(Ajustes finos de biblioteca podem ser registrados no repositório à medida que o projeto for criado.)*
 
+### 3.1 Variáveis de ambiente e URL base da API (backend local vs produção)
+
+- O frontend deve obter a **URL base** do backend **apenas** via **variáveis de ambiente** injetadas em **build time** pelo Vite, de forma a alternar **desenvolvimento local**, **staging** e **produção** sem alterar código de negócio.
+- **Convenção Vite:** apenas variáveis com prefixo **`VITE_`** são expostas ao bundle do browser.
+- **Variável obrigatória (recomendada):** **`VITE_API_BASE_URL`** — URL absoluta do serviço API **sem** barra final (ex.: `http://localhost:8080` com backend local; `https://api.cliente.com` em produção). Todas as chamadas HTTP aos endpoints (ex.: prefixo `/api/v1/...` acordado com o `instituto-renata-be`) devem **concatenar** paths a esta base.
+- **Ficheiros:** `.env.development`, `.env.production` e, se necessário, `.env.local` (gitignored para segredos locais); **`.env.example`** na raiz do repositório lista as chaves com valores placeholder — **sem** credenciais reais versionadas.
+- **Implementação:** centralizar leitura num módulo único (ex.: `src/config/env.ts`) que usa `import.meta.env.VITE_API_BASE_URL`; **proibido** espalhar URLs literais da API em componentes. Enquanto a integração for só mock, o valor pode ser vazio ou apontar para um stub documentado no código.
+- **Segurança:** tokens, segredos e chaves privadas **não** devem ir em variáveis `VITE_*` (ficam expostas no JavaScript público). Usar `VITE_*` apenas para **origem pública** da API. Autenticação (cookies `HttpOnly`, header `Authorization`, etc.) segue o contrato definido com o backend.
+- **Nota:** no backend, a variável **`ENV`** define o perfil do **processo** e da **ligação ao PostgreSQL** (`instituto-renata-be/docs/SPEC.md` §7.2). Isto é **independente** de `VITE_API_BASE_URL`, que só define **para qual host/porta o frontend envia** os pedidos HTTP.
+
 ## 4. Módulos e escopo por feature
 
 Cada módulo abaixo é uma **parte do projeto** com fronteiras claras (pastas `features/<nome>` + rotas). Telas listadas são **principais**; novas telas serão acrescentadas nas próximas versões deste spec.
@@ -58,6 +68,16 @@ Cada módulo abaixo é uma **parte do projeto** com fronteiras claras (pastas `f
 ---
 
 ### 4.2 Marketing (site institucional / captura)
+
+O módulo **marketing** no pacote do tenant pode incluir: **(A)** telas **internas** após login (campanhas, metas, acompanhamento) e **(B)** páginas **públicas** sem login. O `PLAN.md` trata **A** e **B** como subentregas da mesma fase (7.1 e 7.2).
+
+#### (A) Área logada — campanhas e metas
+
+**Propósito:** acompanhar metas e campanhas comerciais no painel (rota típica `/app/marketing`).
+
+**Escopo inicial (UI):** visão anual/mensal, lista ou tabela de campanhas com progresso; ações e persistência reais dependem de API (até lá, mocks).
+
+#### (B) Site público
 
 **Propósito:** páginas **públicas** de divulgação do consultório (ou produto white-label), sem exigir login.
 
@@ -160,11 +180,11 @@ O sistema será vendido **por pacotes**: cada cliente habilita apenas os **módu
 | Layout | Área logada com shell comum (navegação lateral ou superior); marketing pode usar layout próprio sem sidebar administrativa. **Em todos os fluxos:** navegação e conteúdo utilizáveis em **largura estreita** (celular). |
 | Responsivo | **Obrigatório:** interfaces usáveis em **smartphone** (toque, leitura, formulários, tabelas com rolagem ou padrão adaptado). Validar em viewports típicas (ex. ~360px de largura) ao entregar telas. |
 | Componentes | Botões, barras de navegação, modais, formulários vêm de `components/` (wrappers sobre Bootstrap quando fizer sentido). |
-| Tema | Cores e tokens definidos em um único lugar; troca de paleta para outro cliente sem varrer telas. **Modo claro/escuro:** o utilizador pode alternar **light / dark** globalmente (toggle acessível em todas as telas); preferência persistida (ex.: `localStorage`) e aplicada via atributo/CSS (ex.: `data-bs-theme`), incluindo ajustes da tela de login (PLAN **Fase 5**). A **tela de início** logada (dashboard em `/app`) segue o PLAN **Fase 6** (prioridade em relação ao site marketing público — PLAN **Fase 7**). |
+| Tema | Cores e tokens definidos em um único lugar; troca de paleta para outro cliente sem varrer telas. **Modo claro/escuro:** o utilizador pode alternar **light / dark** globalmente (toggle acessível em todas as telas); preferência persistida (ex.: `localStorage`) e aplicada via atributo/CSS (ex.: `data-bs-theme`), incluindo ajustes da tela de login (PLAN **Fase 5**). A **tela de início** logada (dashboard em `/app`) segue o PLAN **Fase 6** (prioridade em relação ao site marketing público — PLAN **Fase 7**). As **primeiras telas** de cada módulo logado (CRM, Vendas, Estoque, etc.), alinhadas a referência visual, seguem o PLAN **Fase 8**; evolução para CRUD e fluxos completos — **Fases 9–11**. |
 | Acessibilidade | Meta: contraste e foco utilizáveis; detalhar checklist depois. |
 | Internacionalização | Desejável deixar textos preparados para tradução (decisão de lib em fase de setup). |
 | Features e roles | Conforme §5: menu, rotas e ações respeitam módulos contratados e papel do usuário. |
-| Dados e API | Conforme §2.1: **mocks até integração**; autenticação e listagens usam implementações falsas alinhadas aos tipos, para plugar o `be` depois. |
+| Dados e API | Conforme §2.1: **mocks até integração**; autenticação e listagens usam implementações falsas alinhadas aos tipos. Após integração, o cliente HTTP usa **`VITE_API_BASE_URL`** (§3.1) para apontar ao backend **local** ou **produtivo** conforme o ambiente de build. |
 | Changelog e README | **`CHANGELOG.md`:** registrar mudanças notáveis por versão (desenvolvimento ou produção), conforme §7.1. **`README.md`:** a secção de **funcionalidades voltada ao cliente** só deve listar o que estiver **em produção** para o cliente; trabalho ainda em desenvolvimento **não** entra aí (ver §7.1). |
 
 ## 7. Processo de atualização (spec, plan, código, changelog e README para produção)
@@ -199,3 +219,5 @@ Itens para incrementar o spec depois: **matriz fina de permissões** além de ad
 | 2026-04-17 | §2 dispositivos/mobile; §3 layout responsivo; §5 RBAC; §6 Tema (claro/escuro + PLAN Fase 5); §7/§7.1. |
 | 2026-04-18 | §6 alinhado ao PLAN: Fase 6 = dashboard `/app`; marketing público = Fase 7; demais fases renumeradas no `PLAN.md`. |
 | 2026-04-18 | §2.1: referência ao `instituto-renata-be` (`docs/SPEC.md` / `docs/PLAN.md`). |
+| 2026-04-19 | §3.1: variável `VITE_API_BASE_URL` para URL base da API (local vs produção); §6 tabela Dados e API. |
+| 2026-04-19 | §6 Tema: referência ao PLAN **Fase 8** (telas iniciais por módulo) e **Fases 9–11** (módulos profundos). |

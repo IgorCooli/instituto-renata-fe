@@ -1,0 +1,25 @@
+/**
+ * Layout de módulos (/app/marketing, …): sidebar + topbar.
+ * Alinhado a tema claro/escuro via Bootstrap / theme.css.
+ */
+.app-feature-shell {
+  min-height: 100vh;
+}
+
+.app-feature-sidebar {
+  width: min(280px, 92vw);
+  flex-shrink: 0;
+}
+
+.app-feature-topbar {
+  min-height: 3rem;
+}
+
+.app-feature-sidebar .nav-link {
+  border-radius: 0.375rem;
+}
+
+.app-feature-sidebar .nav-link.active {
+  background-color: var(--bs-secondary-bg);
+  font-weight: 600;
+}

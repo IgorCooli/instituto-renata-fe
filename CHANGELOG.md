@@ -6,9 +6,23 @@ O formato segue a ideia de [Keep a Changelog](https://keepachangelog.com/pt-BR/1
 
 ## [Unreleased]
 
+### Changed
+
+- **Documentação:** `docs/PLAN.md` — nova **Fase 8** (telas iniciais dos módulos com referência visual / prints), priorizada antes dos módulos profundos; **CRM, Vendas, Estoque, Qualidade** renumerados para **9–12**. `docs/SPEC.md` §6 e `docs/PROMPT.md` alinhados.
+
+## [0.6.0] — 2026-04-19
+
 ### Added
 
+- **Fase 7.1 — Marketing interno (`/app/marketing`):** meta anual e faixa mensal (real / projetado / meta), tabela de campanhas com busca, progresso e ações em placeholder (“Em breve”); dados em `src/mocks/marketing.ts`; estilos em `src/styles/marketing-page.css`.
 - **Tela de início** (`/app`): dashboard com perfil (iniciais, nome derivado do e-mail, papel), saudação com marca configurável em `mocks`, banner de onboarding (progresso e fechar), grelha de módulos **Marketing**, **CRM**, **Vendas**, **Estoque** com ícones em traço e respeito a `hasFeature`, secção **Complementos** (placeholder) e botão flutuante de suporte (desativado). Estilos em `src/styles/app-dashboard.css`.
+
+### Changed
+
+- **Documentação:** `docs/SPEC.md` §4.2 — marketing interno (campanhas/metas) vs site público; `docs/PLAN.md` — Fase 7 em **7.1** (entregue) e **7.2** (landing pendente).
+- **Documentação:** `docs/SPEC.md` §3.1 — variável de ambiente **`VITE_API_BASE_URL`** para definir a URL base do backend (local vs produção) e regras de uso com Vite.
+
+- **Navegação na área logada:** o **início** (`/app`) deixa de usar a navbar horizontal global; só **toggle de tema** no canto (`ThemeToggleScreenCorner`). As rotas de **módulo** (`/app/marketing`, …) usam **`AppFeatureShell`**: **navbar lateral** (subtítulo e links por módulo em `featureSidebar.ts`, entradas “Em breve” desativadas), **topbar** com Voltar ao início, tema e avatar, e perfil + Sair na base da sidebar. Estilos em `src/styles/app-feature-shell.css`.
 
 ## [0.5.0] — 2026-04-17
 
