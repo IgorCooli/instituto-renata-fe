@@ -1,0 +1,157 @@
+/**
+ * Vendas — Pipeline Kanban (`/app/vendas/pipeline`).
+ */
+
+.ir-vendas-pipeline-page .ir-pipeline-kpi-strip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1rem;
+  margin-bottom: 1rem;
+}
+
+.ir-vendas-pipeline-page .ir-pipeline-kpi-strip__item {
+  min-width: 5rem;
+}
+
+.ir-vendas-pipeline-page .ir-pipeline-kpi-strip__value {
+  font-size: 1.35rem;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+
+.ir-vendas-pipeline-page .ir-pipeline-kpi-strip__label {
+  font-size: 0.75rem;
+  color: var(--bs-secondary-color);
+  margin-top: 0.25rem;
+}
+
+.ir-vendas-pipeline-page .ir-pipeline-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.ir-vendas-pipeline-page .ir-pipeline-board {
+  display: flex;
+  gap: 0.75rem;
+  overflow-x: auto;
+  padding-bottom: 0.5rem;
+  margin: 0 -0.25rem;
+  scroll-snap-type: x proximity;
+}
+
+.ir-vendas-pipeline-page .ir-pipeline-col {
+  flex: 0 0 17rem;
+  max-width: 100%;
+  scroll-snap-align: start;
+  display: flex;
+  flex-direction: column;
+  min-height: 18rem;
+  max-height: calc(100vh - 16rem);
+  border-radius: 0.75rem;
+  border: 1px solid var(--bs-border-color);
+  background: var(--bs-secondary-bg);
+}
+
+.ir-vendas-pipeline-page .ir-pipeline-col__head {
+  padding: 0.75rem 0.875rem;
+  border-bottom: 1px solid var(--bs-border-color);
+  flex-shrink: 0;
+}
+
+.ir-vendas-pipeline-page .ir-pipeline-col__title {
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.ir-vendas-pipeline-page .ir-pipeline-col__meta {
+  font-size: 0.75rem;
+  color: var(--bs-secondary-color);
+}
+
+.ir-vendas-pipeline-page .ir-pipeline-col__body {
+  flex: 1;
+  overflow-y: auto;
+  padding: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.ir-vendas-pipeline-page .ir-pipeline-col--drop-target {
+  outline: 2px dashed var(--ir-vendas-gold);
+  outline-offset: -2px;
+}
+
+.ir-vendas-pipeline-page .ir-pipeline-empty {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 1rem 0.75rem;
+  color: var(--bs-secondary-color);
+  font-size: 0.8rem;
+  gap: 0.5rem;
+  min-height: 8rem;
+}
+
+.ir-vendas-pipeline-page .ir-pipeline-empty svg {
+  opacity: 0.45;
+}
+
+.ir-pipeline-card__avatar {
+  width: 2.25rem;
+  height: 2.25rem;
+  font-size: 0.7rem;
+  background: var(--bs-tertiary-bg);
+  color: var(--bs-body-color);
+  border: 1px solid var(--bs-border-color);
+}
+
+.ir-pipeline-card__badge {
+  font-size: 0.65rem;
+  font-weight: 600;
+  padding: 0.15rem 0.45rem;
+  border-radius: 999px;
+  line-height: 1.2;
+}
+
+.ir-pipeline-card__badge--late {
+  background: rgba(248, 81, 73, 0.2);
+  color: #f85149;
+}
+
+html[data-bs-theme='light'] .ir-pipeline-card__badge--late {
+  color: #cf222e;
+}
+
+.ir-pipeline-card__badge--won {
+  background: rgba(46, 160, 67, 0.2);
+  color: #3fb950;
+}
+
+html[data-bs-theme='light'] .ir-pipeline-card__badge--won {
+  color: #1a7f37;
+}
+
+.ir-vendas-pipeline-page .ir-pipeline-card {
+  background: var(--bs-body-bg);
+}
+
+.ir-vendas-pipeline-page .ir-pipeline-card-wrap {
+  cursor: grab;
+}
+
+.ir-vendas-pipeline-page .ir-pipeline-card-wrap:active {
+  cursor: grabbing;
+}
+
+.ir-vendas-pipeline-page .ir-pipeline-view-toggle .btn.active {
+  background: var(--bs-secondary-bg);
+  border-color: var(--bs-border-color);
+}

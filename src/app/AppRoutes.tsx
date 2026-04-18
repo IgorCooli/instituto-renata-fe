@@ -5,6 +5,7 @@ import { CrmPage } from '../pages/app/CrmPage'
 import { EstoquePage } from '../pages/app/EstoquePage'
 import { MarketingPage } from '../pages/app/MarketingPage'
 import { VendasLeadsPage } from '../pages/app/VendasLeadsPage'
+import { VendasPipelinePage } from '../pages/app/VendasPipelinePage'
 import { VendasTransacoesPage } from '../pages/app/VendasTransacoesPage'
 import { HomePage } from '../pages/HomePage'
 import { LoginPage } from '../pages/LoginPage'
@@ -52,6 +53,7 @@ export function AppRoutes() {
           >
             <Route index element={<VendasTransacoesPage />} />
             <Route path="leads" element={<VendasLeadsPage />} />
+            <Route path="pipeline" element={<VendasPipelinePage />} />
           </Route>
           <Route
             path="estoque"

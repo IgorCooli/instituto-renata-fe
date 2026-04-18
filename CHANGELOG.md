@@ -8,6 +8,7 @@ O formato segue a ideia de [Keep a Changelog](https://keepachangelog.com/pt-BR/1
 
 ### Added
 
+- **Vendas — Pipeline (`/app/vendas/pipeline`):** cabeçalho com contagem, faixa de KPIs (Pipeline, Forecast, Ganhos, Perdidos, Ciclo), barra de filtros em placeholder, busca, alternância quadro/lista, quadro Kanban com scroll horizontal, arrastar e largar entre colunas, cartões com avatar, valor e badges; dados em `src/mocks/vendas-pipeline.ts`; estilos em `src/styles/vendas-pipeline-page.css`; `PipelineDealCard.tsx`. Item **Pipeline** ativo na sidebar de Vendas.
 - **Vendas — Leads (`/app/vendas/leads`):** cartões resumo (Leads / Pipeline / Clientes), filtros em pills, dropdown de etapa, busca, tabela com checkbox (placeholder), origem e etapa com ícones; botões **CSV** e **+ Lead** e FAB em placeholder. Rotas aninhadas em `vendas` (`index` = Transações, `leads` = Leads). Dados em `src/mocks/vendas-leads.ts`; `src/styles/vendas-leads-page.css`; `VendasTransacoesPage.tsx` (antes conteúdo único de `VendasPage`).
 - **Vendas (`/app/vendas`) — Transações (Fase 8):** KPIs (faturamento, quantidade, ticket médio), seletor de mês/ano com navegação, busca na tabela, lista mock de transações com estratégia (badges), pagamento e avatar de cliente; botão **Nova Venda** e FAB de suporte em placeholder. Dados em `src/mocks/vendas.ts`; estilos em `src/styles/vendas-page.css`. Sidebar do módulo com itens alinhados ao produto (demais rotas “Em breve”).
 
